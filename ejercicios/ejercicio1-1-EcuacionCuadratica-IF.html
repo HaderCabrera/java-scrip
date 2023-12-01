@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecuacion cuadratica</title>
+</head>
+<body>
+    <script>
+        let ax,bx,c,result1, result2;
+        ax = Number(prompt("Ingrese el coeficiente de X**2."));
+        bx = Number(prompt("Ingrese el coeficiente de X*2."))
+        c = Number(prompt("Ingrese el tercer coeficiente."))
+        if ( (bx**2 - 4) <= 0){
+            console.log("La solucion a la cuadratica es imaginaria.")
+        }else if (ax === 0){
+            console.log("No es una ecuacion cuadratica, es una lineal.")
+        } else{
+            result1 = (-bx + (bx**2 - 4 * ax * c)**(1/2)) / (2 * ax);
+            result2 = (-bx - (bx**2 - 4 * ax * c)**(1/2)) / (2 * ax);
+            console.log(`X1 = ${result1} y X2 = ${result2}`)
+        }
+        
+        
+    </script>
+</body>
+</html>
