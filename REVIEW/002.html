@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enteros hasta negativo</title>
+</head>
+<body>
+    <h1>Números ingresados por el usuario:  </h1>
+    <ul id="dates">
+    </ul>
+    <script>
+        let numberPositive, str = "";
+        numberPositive = prompt("Enter a whole number:   ")
+        while (Number(numberPositive >= 0)){
+            str += numberPositive + " "
+            numberPositive = prompt("Enter a whole number:   ")
+            console.log(numberPositive)
+        }
+        str += numberPositive + " "
+        console.log(str);
+        document.getElementById("dates").innerHTML = str;
+    </script>
+</body>
+</html>
