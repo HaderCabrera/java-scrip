@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const sumRest = function(num1,num2){
+            let suma,resta,resultado;
+            suma = num1 + num2
+            resta = num1 - num2
+            resultado = `La suma es: ${suma} y la resta es: ${resta}`
+            return resultado;
+        }
+        const productDivision = function(num1,num2){
+            let multiplicacion, division;
+            multiplicacion = num1 * num2;
+            division = num1 / num2;
+            resultado = `La multiplicacion es: ${multiplicacion} y la division es: ${division}`
+            return resultado;
+        }
+
+        let numero1,numero2,resultado;
+        numero1 = Number(prompt("INgrese el primer numero"))
+        numero2 = Number(prompt("INgrese el primer numero"))
+        if (numero1 > numero2){
+            resultado = sumRest(numero1,numero2);
+        } else {
+            resultado = sumRest(numero1,numero2);
+        }
+        alert(resultado)
+    </script>
+</body>
+</html>

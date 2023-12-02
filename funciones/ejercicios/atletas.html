@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podio</title>
+</head>
+<body>
+    <script>
+        const incentivo = function(record){
+            
+        }
+        
+        let nombre, puntaje,cantJugadores,puntajeInicial = 0,medallaOro ;
+        const RECORD = 15.5;
+        cantJugadores = Number(prompt("Cuantos atletas participaron?"));
+        for (let i = 0; i < cantJugadores; i++) {
+            nombre = prompt("Indique el nombre del jugador:  ")
+            puntaje = Number(prompt(`Indique el puntaje del jugador ${nombre}: `))
+            if (puntaje > puntajeInicial){
+                medallaOro = `Medalla de oro para ${nombre} con un puntaje de: ${puntaje}`;
+                puntajeInicial = puntaje;
+            }
+        alert(medallaOro)
+
+    }
+
+
+        
+    </script>
+</body>
+</html>

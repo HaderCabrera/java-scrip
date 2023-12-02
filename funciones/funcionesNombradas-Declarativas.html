@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cuadratica con funciones</title>
+</head>
+<body>
+    <script>
+        function cuadratica(a,b,c){
+            let result1,result2, raiz;
+            raiz = (bx**2 - 4 * ax * c)**(1/2)
+            let resultado  = "";
+            if (raiz < 0){
+                resultado = NaN
+            } else{
+                result1 = (-bx + raiz) / (2 * ax);
+                result2 = (-bx - raiz) / (2 * ax);
+                resultado = `X1 = ${result1}\nX2 = ${result2}`;
+            }
+            return resultado;
+        }
+        let ax,bx,c,r;
+        ax = Number(prompt("Ingrese el coeficiente de X**2."));
+        if (ax === 0){
+            alert("No es una cuadratica")
+        } else {
+            bx = Number(prompt("Ingrese el coeficiente de X*2."))
+            c = Number(prompt("Ingrese el tercer coeficiente."))
+        }
+        r = cuadratica(ax,bx,c)
+        if (r.length > 0 && r != 0){
+            alert(r)
+        } else {
+            alert("La respuesta no existe en los reales.")
+        }
+    </script>
+</body>
+</html>

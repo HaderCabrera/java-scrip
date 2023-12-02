@@ -9,17 +9,21 @@
     <h1>Números ingresados por el usuario:  </h1>
     <ul id="dates">
     </ul>
+    <p id="promedio"></p>
     <script>
-        let numberPositive, str = "";
-        numberPositive = prompt("Enter a whole number:   ")
-        while (Number(numberPositive >= 0)){
-            str += numberPositive + " "
-            numberPositive = prompt("Enter a whole number:   ")
+        let numberPositive, acumulador = 0, contador = 0;
+        numberPositive = Number(prompt("Enter a whole number:   "));
+        while (numberPositive >= 0){
+            numberPositive = Number(prompt("Enter a whole number:   "));
             console.log(numberPositive)
+            if (numberPositive >= 0){
+                document.getElementById("dates").innerHTML += `<li> ${numberPositive}</li>`;
+                acumulador += numberPositive;
+                contador++ 
+            }      
         }
-        str += numberPositive + " "
-        console.log(str);
-        document.getElementById("dates").innerHTML = str;
+        document.getElementById("promedio").innerHTML += `El promedio es : ${acumulador / contador}`;
+
     </script>
 </body>
 </html>
