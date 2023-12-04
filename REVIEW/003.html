@@ -63,6 +63,49 @@
         /* 
     </script>
     <script id="excersice2">
+        //VALIDAR NUMERO
+        /*const validarNumero =  function(msg){
+            let dato;
+            let repita;
+            do {
+                repita = false
+                dato = Number(prompt(msg))
+                else if (isNaN(dato)) {
+                    alert("Cantidad incorrecta, indique un número positivo: ")
+                    repita = true
+                }
+            } while (repita)
+            return dato;
+        }
+
+        //GENERAR DATOS
+        const getDatos = function(sumatoria,contador,numMenor,numMayor){
+            let sumatoriaValores = sumatoria;
+            let valorPromedio = (sumatoria) / (contador);
+            let cantidadValores = contador;
+            let retornar = `La sumatoria de valores es : ${sumatoriaValores}.` + `\nEl valor promedio es: ${valorPromedio}`;
+            return retornar;
+        }
+        */
+        //PROGRAMA PRINCIPAL
+        let acumulador = 0, contador = 0, numMayor = 0, numMenor = 0;
+        do {
+            let numero = validarNumero("Ingrese un numero, si desea parar digite el número CERO.");
+            if (numero > numMayor){
+                numMayor = numero;
+            } else if (numero < numMenor) {
+                numMenor = numero;
+            }
+            
+            if (numero === 0){
+                alert(getDatos(acumulador,contador,numMenor,numMayor));
+                break
+            }
+            
+        } while (true) {
+            contador++;
+            acumulador += numero;
+        }
         
     </script>
 
