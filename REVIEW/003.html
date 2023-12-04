@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problemas 7-10</title>
+</head>
+<body>
+    <script id="exercise1">
+        /*
+        //VALIDAR STRING
+        const validarString = function(msg){
+            let dato,repita;
+            do {
+                repita = false;
+                dato = prompt(msg)
+                if (dato === null){
+                    alert("Nombre incorrecto,rpeita de nueva:,sañ,d")
+                    repita = true;
+                }
+            } while (repita === true)
+            return dato; 
+        }      
+
+        //VALIDAR NUMERO ENTERO
+        const numero =  function(msg){
+            let dato;
+            let repita;
+            do {
+                repita = false
+                dato = Number(prompt(msg))
+                if (dato === 0) {
+                    dato = undefined
+                    break
+                }
+                else if (isNaN(dato) || dato < 0 || dato > 100000000000000) {
+                    alert("Cantidad incorrecta, indique un número positivo: ")
+                    repita = true
+                }
+            } while (repita)
+            return dato;
+        }
+
+        //RETORNAR FACTURA
+        const calcularCantidad = function(nombre,quantity,price){
+            pagar = `El valor a pagar por ${quantity} ${nombre} ('s) es: $${price*quantity} COPS`
+            return pagar
+        }
+
+        //MAIN
+        let name,price,numeroDarticulos;
+        numeroDarticulos = numero("Indique la cantidad de articulos que va a llevar:  ")
+        if (numeroDarticulos != undefined) {
+            price = numero("Indique el precio del articulo por favor: ");
+            if (price != undefined){
+                name = validarString("Indique el nombre del articulo que va a llevar:  ")
+                if (name != undefined) {
+                    factura = calcularCantidad(name,numeroDarticulos,price); 
+                    alert(factura);
+                }
+            }
+        }
+        /* 
+    </script>
+    <script id="excersice2">
+        
+    </script>
+
+</body>
+</html>
