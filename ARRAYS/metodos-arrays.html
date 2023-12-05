@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //
+        //METODO FOREACH, HACER UNA OPERACION CON CADA ELEMENTO, NO DEVUELVE NADA
+        let arr = [4.6, 2.5, 2.5, 2.5]
+            //con funcion anonima
+            arr.forEach(function(e){
+                console.log(e* 0.8 + 1)
+            });
+            //con funcion flecha
+            arr.forEach( e => console.log(e* 0.8 + 1));
+
+        //METODO MAP, HACER UNA OPERACION CON CADA ELEMENTO, SI DEVUELVE
+        let curva8 = arr.map(e => e * 0.8 + 1);
+        console.log(curva8)
+        
+        //filter, DEVUELVE LO QUE CUMPLE CON LA CONDICION
+        let mayor3 = arr.filter(function(e) {
+            if (e >= 3) return e;
+        })
+        console.log(mayor3)
+
+        //REDUCE todo el array a  aun valor
+        let suma8 = arr.reduce((c,e) => c + (e* 0.8 + 1))
+        console.log(suma)
+
+    </script>
+</body>
+</html>

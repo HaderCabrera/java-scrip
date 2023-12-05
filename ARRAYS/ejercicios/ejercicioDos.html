@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //
+        let checkString = function(string,stringBuscar) {
+            let stringg = string.toLowerCase();
+            let stringBuscarr = stringBuscar.toLowerCase(); 
+            let array = stringg.split(' ');
+            console.log(array)
+            //recorrer poe elementos
+            for (const palabra of array){
+                if (palabra === stringBuscarr) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        let string = "Hola buenos DIAS", stringBuscar = "HoLa";
+        verificar = checkString(string, stringBuscar);
+        console.log(verificar)
+    </script>
+</body>
+</html>
