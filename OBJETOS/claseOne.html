@@ -18,7 +18,7 @@
                 ciudad: 'Bucaramanga'
             },
             caminar: function() {
-                console.log(this.nombre + ' ' + 'Esta caminando')
+                console.log(this.nombre + ' ' + 'Esta caminando')//acceder a propiedad del mismo objeto
             }
         };
         //ACCEDER A DATOS
@@ -37,6 +37,14 @@
         //CONVERTIR JSON A OBJETO
         const objPersona = JSON.parse(cadenaJSON)
         console.log(objPersona)
+
+        //CLONAR OBJETOS
+        const objetoClonado = Object.assign({}, persona); //CLONAR CON ASSING
+        console.log("ESTE ES EL CLONADO")
+        console.log(objetoClonado)
+
+        const objetoClonadoo = { ...persona}
+        console.log(objetoClonadoo) //CLONAR CON SPREAD
     </script>
 </body>
 </html>

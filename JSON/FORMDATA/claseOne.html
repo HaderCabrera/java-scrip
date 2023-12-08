@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="datos">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre">
+        <br>
+        <label for="edad">Edad: </label>
+        <input type="number" name="edad" id="edad">
+    </form>
+    <input onclick="capturarForm()" type="submit" value="Enviar">
+
+    <script>
+        //enviar datos del formulario con atributo CAPTION del FORM
+        function capturarForm() {
+
+            //const form = document.querySelector("form")//tomar datos de un formulario por etiqueta
+            const form = document.getElementById("datos") //tomar datos de un formulario por ID
+            const formData = new FormData(form)
+
+            console.log(typeof(formData))
+            console.log(formData)
+
+            //hay que recorrer formData para poder tomar valores
+            for (const elemento of formData) {
+                console.log(elemento[1])
+                if (elemento[1] > 17) {
+                    console.log("Puedes entrar a campusland")
+                }
+            }
+
+            //AGREGAR PAREJA DE VALORES
+            formData.append("nombre","Oscar")
+            console.log(formData)
+            const nombres = formData.getAll("nombre") //SACAR VALORES DE ATRIBUTO NOMBRE DE EL OBJETO
+            console.log(nombres)
+
+            //HACER SWICH DE VARIABLES
+            let a = 7, b = 1;
+            [a , b] = [b , a]
+            console.log(a,b)
+        }
+
+    </script>
+</body>
+</html>
