@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <table>
+        <thead>
+            
+        </thead>
+     </table>
+    <script>
+
+        let texto = prompt("Indique el texto de desea analizar")
+        
+        let textoArray = texto.split(" ")
+        console.log(textoArray)
+        let  bandera, contPalabras = 0;
+        const palabras = new Map();
+
+        //CLONAR ARRAY CON SPREAD
+        //const textClone = [...texto];
+        for (let i = 0; i < textoArray.length; i++) {
+             //for para preguntar POR LAS OTRAS PALABRAS
+            for (let j = 0; j < textoArray.length; j++) {
+                if (textoArray[i] == textoArray[j]) {
+                    contPalabras++
+                }
+            }
+            palabras.set(textoArray[i],contPalabras++);
+            contPalabras = 0; 
+        }
+        console.table(palabras)
+        
+    </script>
+</body>
+</html>

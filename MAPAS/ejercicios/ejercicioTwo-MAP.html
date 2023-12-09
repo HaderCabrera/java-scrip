@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOMINA</title>
+</head>
+<body>
+    <button onclick="AddFacturee()">Agregar factura</button>
+    <button onclick="deleteFacturee()">Cancelar factura</button>
+    <script>
+        const facturas = new Map(); 
+        //funcion para agregar factura a MAP
+        const AddFacture = function(facturas) {
+            let costFacture, codeFacture;
+            codeFacture = Number(prompt("Ingrese el código de la factura"));
+            costFacture = Number(prompt("Ingrese el costo de la factura"));
+            facturas.set(codeFacture, costFacture);
+            console.log(facturas);
+            return facturas
+        }
+        //funcion para tomar el caption del button y enviarle el MAP a funcion de agregar
+        const AddFacturee = function() {
+            AddFacture(facturas)  
+        }
+
+        //funcion para tomar ID de
+        const deleteFacture = function(facturas) {
+            let codeFacture = Number(prompt("Indique el codigo de la factura que quiere eliminar:  "));
+            if (facturas.has(codeFacture) === true) {
+                facturas.delete(codeFacture);
+                console.log(facturas);
+            } else {
+                alert ("La factura no existe, verifique el codigo. ")
+            }
+        }    
+        const deleteFacturee = function() {
+            deleteFacture(facturas);
+        }
+        
+    </script>
+</body>
+</html>

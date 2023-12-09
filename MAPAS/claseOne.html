@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAPS</title>
+</head>
+<body>
+    <script>
+        const frutas = new Map([["Manzanas",2500],["Peras",2000],["Bananos",1500]] )
+        console.log(frutas)
+        console.log("Cantidad de llaves = " + frutas.size)
+
+        //AGREGAR VALORES AL MAP
+        frutas.set("Pitaya",3000)
+        frutas.set("Mango", 800)
+        console.log(frutas)
+        
+        //OBETENER VALORES DEL MAP
+        console.log("La fruta de camilo cuesta: $ " + frutas.get("Manzanas"))
+
+        //ELIMINAR VALORES DEL MAP
+        frutas.delete("Manzanas")
+        console.log(frutas)
+
+        //COMPROBAR SI EL MAP TIENE UN VALOR
+        console.log(frutas.has("Manzanas"))
+
+        //RECORRER CON FOREACH
+        frutas.forEach((valor, llave) => {
+            console.log(`El precio de ${llave} es : $ ${valor}`)
+        })
+
+        //RECORRER CON ENTRIES
+        for (const [k, v] of frutas.entries()) {
+            console.log(`El precio de ${k} es : $ ${v}`)
+        }
+
+    </script>
+</body>
+</html>

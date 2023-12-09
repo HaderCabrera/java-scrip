@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // CREAR UN NUEVO ARRAY
+        let arrayNuevo = ["hola", 5, "b", "MinombreEs HADER"]; //array con elementos exitentes
+        console.log(arrayNuevo[3])
+        console.log(typeof(arrayNuevo) + "\n El array tiene un tamaño de: " + arrayNuevo[3].length)
+        console.log(`El array tiene un tamaño de: ${arrayNuevo[3].length}`)
+
+        let arrayVacio = new Array(); //array vacio
+        console.log(`El array nuevo tiene un tamaño de: ${arrayVacio.length}.\n ${arrayVacio}`);
+        arrayVacio[0] = "s" //Agregar valor a posicion de array
+        arrayVacio[8] = "b"
+        console.log(arrayVacio)
+        
+        let arrayVacio2 = new Array(4); //array vacion con un tamaño de 4
+        console.log(`El array nuevo tiene un tamaño de: ${arrayVacio2.length}.\n ${arrayVacio2}`);
+        arrayVacio2[0] = "Agregue1"; //Agregar valor a posicion de array
+        arrayVacio2[3] = "Agregue2";
+        console.log(arrayVacio2)
+
+        // TOMAR/ACCEDER A VALORES DE UN ARRAY
+        let arrayNuevoo= new Array(10, 20, 30, "hg", "Hola Como va?")
+        let variableQuery = arrayNuevoo[3];
+        console.log(variableQuery)
+
+        // PUSH()->>>>>AGREGAR VALOR AL FINAL DE UN ARRAY Y DEVUELVE EL NUEVO TAMAÑO
+        let frutas = ["Manzana", "Pera", "Cebolla"]
+        let a = frutas.push("Guanabana") // "a" tomaria el tamaño de la nueva lista
+        console.log(`Las frutas ahora son: ${frutas} y su nuevo tamaño es: ${a}`)
+
+        // POP()->>>>>ELIMINA EL ULTIMO ELEMENTO DE UN ARRAY Y LO DEVUELVE
+        frutas.push("Aguacate")
+        let eliminado = frutas.pop()
+        console.log(`La fruta que se elimino fue: ${eliminado} y las frutas disponibles son: ${frutas}.`)
+
+        // SHIFT->>>>>ELIMINA EL PRIMER ELEMENTO DE UN ARRAY Y LO DEVUELVE
+        let eleminarPrimero = frutas.shift();
+        console.log(`La fruta que se elimino fue: ${eleminarPrimero} y las frutas disponibles son: ${frutas}.`)
+
+        // UNSHIFT->>>>> AGREGAR ELEMENTOS AL INICIO DE UNA LISTA, DEVUELVE EL NUEVO TAMAÑO
+        frutas.unshift("Guayaba")
+   
+        // SLICE ->>>>>> TOMA UNA PARTE DE UN ARRAY
+        console.log(frutas)
+        let frutasDulces = frutas.slice(0,2) //TOMAR LOS VALORES 0-1 LA POSICION 2 "NO" LA TOMA
+        console.log(frutasDulces)
+
+        // SPLICE->>>>> AGREGAR/ELIMINAR ELEMENTOS DE UN ARRAY
+        console.log(frutas)
+        let frutasEliminadas = frutas.splice(0,2,"Perejil") //AGREGO "PEREJIL" EN LA POSICION 0 Y ELIMINO LAS 2(DOS) SIGUIENTES POSICIONES.
+        console.log(frutas)
+        console.log(frutasEliminadas) 
+
+        // CONCAT->>>>>> UNIR ARRAYS
+        let verduras = ["Platano", "Tomato", "Carrot"]  
+        let plaza = verduras.concat(frutas)
+        console.log(plaza) 
+        
+        // JOIN->>>>> CREA UN STRING CON UN SEPARADOR EN ESPECIFICO
+        fraseVerduras = verduras.join(333)
+        console.log(fraseVerduras)
+        console.log(typeof(fraseVerduras))
+
+        // INDEXOF->>>>>> DEVUELVE LA POSICION DE ELEMENTO QUE ESTOY BUSCANDO DE LO CONTRARIO -1
+        let searchPosition = plaza.indexOf("Perejil")
+        console.log(plaza)
+        console.log(searchPosition)
+
+        // SPLIT->>>>> CREA UN ARRAY DE UNA CADENA MEDIANTE UN SEPARADOR EN ESPECIFICO
+    </script>
+</body>
+</html>

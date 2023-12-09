@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperDigito con validaciones</title>
+</head>
+<body>
+    <script>
+
+        //validar ENTRADA
+        const validarString = function(msg){
+            let dato,repita,arrayNumbers, primerNumero, segundoNumero;
+            do {
+                repita = false;
+                dato = prompt(msg)
+                if (dato === null){
+                    alert("Salir!.....")
+                    return("lediocancelar");
+                }
+                arrayNumbers = dato.split("  ")
+                primerNumero = Number(arrayNumbers[0]);
+                segundoNumero = Number(arrayNumbers[1]);
+                
+        
+                if (arrayNumbers.length < 2) {
+                    alert("Separador incorrect!, Remember 2 space.")
+                    repita = true;
+
+                } else if (isNaN(primerNumero) || primerNumero <= 1 || primerNumero >= 10**100000) {
+                    alert("First number wrong!, Try again...")
+                    repita = true;
+
+                } else if (isNaN(segundoNumero) || segundoNumero <= 1 || segundoNumero >= 10**5) {
+                    alert("Second number wrong!, Try again...")
+                    repita = true;
+
+                } else if (arrayNumbers.length < 2) {
+                    alert("Separador icorrect!, Remember 2 space.")
+                    repita = true;
+                }
+
+            } while (repita === true)
+
+            return arrayNumbers; 
+        }
+
+        //funcion para calcular "SUPER DIGITO"
+        const superDigit = function(entradaValidada) {
+            let newNumber = entradaValidada[0].repeat(entradaValidada[1]); //multiplicar string
+            let sumando;
+            let newNumberArray = newNumber.split("");
+            while (newNumber.length != 1) {
+                sumando = newNumberArray.reduce((c,e) => Number(c) + Number(e));
+                newNumber = sumando.toString();
+                newNumberArray = newNumber.split("");
+            } 
+            return sumando
+        }
+
+        //MAIN
+        let entrada;
+        let resultado;
+        entrada = validarString("Put p(number) and k(veces) separete for 2 space. Example [123  5]")
+        if (entrada === "lediocancelar") {
+            console.log("Try again.")
+        } else {
+            resultado = superDigit(entrada)
+            console.log(`El superdigito de el numero ingresado es: ${resultado}`)
+        }
+
+    </script>
+</body>
+</html>

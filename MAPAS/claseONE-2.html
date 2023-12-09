@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiando personalmente</title>
+</head>
+<body>
+    <script>
+        //CREAR MAP
+        const myMap = new Map(); //map vacio
+        const mapPrueba = new Map([["mandarina",600],["guanabana",3000],["piña",2500],["pera",1800]]); //map con informacion.
+        console.log(mapPrueba.size) //Tamaño del MAP
+
+        //AGREGAR DATOS AL MAP -> si ya exite llave reemplaza el valor de la llave.
+        let array = ["Hader Cabrera", 25000, 'm'];
+        let variables = "123abc"
+        myMap.set("addArray",array) //agregamos "array" a una llave
+        myMap.set("addVariable",variables)
+        console.log(myMap)
+
+        //OBTENER VALORES DEL MAP
+        let quiero = myMap.get('addArray')[2] //acceder a lista en una VALOR
+        console.log(typeof(quiero));
+        console.log(myMap.get('array')) //retorna "undefined" si no existe la llave
+
+        //ELIMINAR DATOS
+        let eliminado = mapPrueba.delete("mandarina")  //elimina clave valor
+        console.log(`La fruta mandarina fue eliminada? ->> ${eliminado}`)// retorna true si la elimino, false si no exite
+
+        console.log(mapPrueba.clear()) // elimina todos los datos del mapa
+        console.log(mapPrueba)
+
+        //BUSCAR CLAVE EN UN MAPA
+        let saber = myMap.has('addArray') // retorna true si esta, de lo contrario false
+        console.log(`El valor addArray esta en el mapa? ->> ${saber}`)
+        
+    </script>
+</body>
+</html>
