@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>OBJETOS</title>
 </head>
 <body>
     <script>
@@ -18,7 +18,7 @@
                 ciudad: 'Bucaramanga'
             },
             caminar: function() {
-                console.log(this.nombre + ' ' + 'Esta caminando')//acceder a propiedad del mismo objeto
+                console.log(this.nombre + ' ' + 'Esta caminando') //acceder a propiedad del mismo objeto
             }
         };
         //ACCEDER A DATOS
@@ -32,10 +32,12 @@
 
         //CONVERTIR OBJETO A JSON
         const cadenaJSON = JSON.stringify(persona);
+        console.log("PRIMERA REVISIOS: ")
         console.log(cadenaJSON)
 
         //CONVERTIR JSON A OBJETO
         const objPersona = JSON.parse(cadenaJSON)
+        console.log("SEGUNDA REVISION:")
         console.log(objPersona)
 
         //CLONAR OBJETOS

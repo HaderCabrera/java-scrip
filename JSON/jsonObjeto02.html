@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizar JSON tipo objeto</title>
+</head>
+<body>
+    <script>
+        const superHeroes = {
+            "squadName": "smallestCampers",
+            "homeTown": "Santander",
+            "formed" : 2023,
+            "secretBase": "Zona Franca",
+            "active": true,
+            "members": [
+                {
+                    "name": "Hader Cabrera",
+                    "captain": true,
+                    "skill": ["quick learning", "frienndly"],
+                },
+                {
+                    "name": "Pepito Perez",
+                    "captain": false,
+                    "skill": ["creative mind", "frienndly"],                    
+                }
+            ]
+        }
+        console.log(superHeroes.members)
+        console.log(superHeroes.members[0].skill)
+        console.log(`Hay ${superHeroes.members.length} superheroes en ${superHeroes.squadName}. `)
+    </script>
+</body>
+</html>
