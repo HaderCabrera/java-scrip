@@ -37,13 +37,7 @@
             <table  border="">
                 <thead>
                     <tr>
-                        <th colspan="3">Envoice summary</th>
-                    </tr>
-                    <tr>
-                        <th>Cantidad total facturas</th>
-                        <th>Cantidad pendiente de cobro</th>
-                        <th>Cantidad cobrada</th>
-
+                        <th colspan="2">Envoice summary</th>
                     </tr>
                 </thead>
                 <tbody id="invoiceSummary">
@@ -58,14 +52,21 @@
     <script>
 
         const facturesPending = new Map();
+        let dateGlobal = new Map([["numeroDeFacturas", 0], ["pendiente",0], ["pagado",0]]);
+
         //Funcion para validar número
         const checkNumber =  function(msg){
             let dato;
             let repita;
             do {
                 repita = false;
-                dato = Number(prompt(msg));
-                if (isNaN(dato) || dato <= 0) {
+                dato = prompt(msg)
+                if (dato === null) { //VALOR AL DAR CANCELAR "NULL"
+                    dato = "salir"
+                    break;
+                }
+                dato = Number(dato);
+                if (isNaN(dato) || dato <= 0) { //VALOR AL NO PONER UN NUEVO O NO PONER NADA
                     alert("Cantidad incorrecta, indique un número positivo: ")
                     repita = true;
                 }
@@ -79,52 +80,66 @@
             do {
                 repita = false;
                 dato = prompt(msg)
-                if (dato === null){
+                if (dato === null || dato.length === 0){ // VALOR AL DAR CANCELAR "NULL" O NO PONER NADA "0"
                     alert("Incorrect code, try again!  ")
                     repita = true;
                 }
             } while (repita === true)
             return dato; 
         }
-        //actualizar tabla
-        const actualizarTable = function(facturesPending,cantFacturas,cantPendiente,cantPagada) {
+        //ACTUALIZAR TABLAS
+        const actualizarTable = function(facturesPending,dateGlobal) {
             let arrayHtmlOne ='', arrayHtmlTwo = '';
+            //Crear array tabla 1
             facturesPending.forEach((a,b) => {
-                arrayHtmlOne += `<tr><td>${b}</td><td>${a}</td></tr>`
+                arrayHtmlOne += `<tr><td>${b}</td><td>$ ${a.toLocaleString('es-CO')} COP</td></tr>`
                 document.getElementById("invoicesPending").innerHTML = arrayHtmlOne;
             });
-            arrayHtmlTwo = `<tr><th>${cantFacturas}</th><th>${cantPendiente}</th><th>${cantPagada}</th></tr>`
-            document.getElementById("invoiceSummary").innerHTML = arrayHtmlTwo
+            //Crear array tabla 2
+            arrayHtmlTwo = `<tr><th>Cantidad total de facturas</th><td>${dateGlobal.get("numeroDeFacturas")}</td></tr><tr><th>Total pendiente de pago</th><td>${dateGlobal.get("pendiente")}</td></tr><tr><th>Total pagado</th><td>${dateGlobal.get("pagado")}</td></tr>`;
+            document.getElementById("invoiceSummary").innerHTML = arrayHtmlTwo;
 
         }
-        //Funcion para agregar factura
-        const addFacture = function(facturesPending) {
-            let price, code, cantFacturas = 0, cantPagada = 0, cantPendiente = 0;
-            price = checkNumber("What is the envoice price?  ");
+        //AGREGAR FACTURA
+        const addFacture = function(facturesPending, dateGlobal) {
+            let price, code;
             code = checkString("What is the envoice code?  ");
-            facturesPending.set(code, price);
-            cantPendiente += price;
-            cantFacturas++
-            actualizarTable(facturesPending,cantFacturas,cantPendiente,cantPagada)
-            //document.getElementById("invoicesPending").innerHTML += `<tr><td>${code}</td><td>${price}</td></tr>`;
+            //comprobar si la factura ya existe
+            if (facturesPending.has(code)) {
+                alert("La factura ya existe, verifique el codigo.")
+            } else {
+                price = checkNumber("What is the envoice price?  ");
+                if (price != "salir") {
+                    facturesPending.set(code, price);
+                    //datos generales
+                    dateGlobal.set("numeroDeFacturas", dateGlobal.get("numeroDeFacturas") + 1);
+                    dateGlobal.set("pendiente",dateGlobal.get("pendiente") + price);
+                    actualizarTable(facturesPending, dateGlobal); //actualizar tablas
+                }
+            }
         }
         //Llamar a la funcion agregar con el button.
         const callToAdd = function() {
-            addFacture(facturesPending)
+            addFacture(facturesPending,dateGlobal)
         } 
 
-        const deleteFacture = function(facturesPending) {
+        //ELIMINAR FACTURA
+        const deleteFacture = function(facturesPending, dateGlobal) {
             let codeFacture = prompt("Indique el codigo de la factura que quiere eliminar:  ");
             if (facturesPending.has(codeFacture) === true) {
-                facturesPending.delete(codeFacture);
-                actualizarTable(facturesPending)
+                //datos generales
+                dateGlobal.set("pagado", facturesPending.get(codeFacture) + dateGlobal.get("pagado"))
+                dateGlobal.set("pendiente", dateGlobal.get("pendiente") - facturesPending.get(codeFacture))
+                facturesPending.delete(codeFacture); //eliminar factura
+                actualizarTable(facturesPending, dateGlobal) //actualizar tablas
             } else {
                 alert ("La factura no existe, verifique el codigo. ")
             }
+
         }
         //Llamar a la funcion eleminar con el button.
         const callToDelete = function() {
-            deleteFacture(facturesPending);
+            deleteFacture(facturesPending,dateGlobal);
         } 
     </script>
 </body>
