@@ -7,7 +7,7 @@
 </head>
 <body>
     <script>
-        //
+        
         //METODO FOREACH, HACER UNA OPERACION CON CADA ELEMENTO, NO DEVUELVE NADA
         let arr = [4.6, 2.5, 2.5, 2.5]
             arr.forEach(function(e){                        //con funcion anonima
@@ -15,7 +15,7 @@
             });
             arr.forEach( e => console.log(e* 0.8 + 1));     //con funcion flecha
 
-        //METODO MAP, HACER UNA OPERACION CON CADA ELEMENTO, SI DEVUELVE
+        //METODO MAP, HACER UNA OPERACION CON CADA ELEMENTO, SI DEVUELVE array
         let curva8 = arr.map(e => e * 0.8 + 1);
         console.log(curva8)
         
@@ -25,9 +25,33 @@
         })
         console.log(mayor3)
 
-        //REDUCE todo el array a  aun valor
+        //REDUCE todo el array a  ún valor
         let suma8 = arr.reduce((c,e) => c + (e* 0.8 + 1))
-        console.log(suma)
+        console.log(suma8)
+
+        //ESTUDIO PROPIO//  //ESTUDIO PROPIO//  //ESTUDIO PROPIO//  //ESTUDIO PROPIO//
+        let salsamentaria = ["Queso", 3 , "Paprica", "Lomo"]
+
+        //Metodo .forEach()
+        salsamentaria.forEach( 
+            function(articulo) { //con funcion ANONIMA
+                console.log(typeof(articulo));
+            }
+        )
+
+                //copiar elementos en otro array
+                let datosCopiados = new Array();
+                salsamentaria.forEach(
+                    function(articulo) {
+                        datosCopiados.push(articulo)
+                    }
+                )
+                console.log(datosCopiados)
+                console.log(typeof(datosCopiados))
+
+        //Metodo .map
+        let returnDatos = datosCopiados.map ( (copiado => copiado + "copyRH"))
+        console.log(returnDatos)
 
     </script>
 </body>

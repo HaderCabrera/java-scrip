@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capturar enteros hasta 0 </title>
+    <style>
+        #datos {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table id="datos" border="2">
+            <tr>
+                <th>Acumulado</th>
+                <th>Cantidad de números</th>
+                <th>Número mas alto</th>
+                <th>Número mas bajo</th>
+            </tr>
+
+        </table>
+    </div>
+    <script>
+        /*Desarrolle un programa cíclico que capture un dato numérico cada vez, y los vaya acumulando. El programa se
+        detiene cuando el usuario digita un cero. El programa debe mostrar: LA SUMATORIA DE LOS VALORES, EL VALOR DEL
+        PROMEDIO, CUÁNTOS VALORES FUERON DIGITADOS, MAYOR VALOR Y MENOR VALOR.*/
+
+        //Validar número
+        const validateNumber =  function(msg){
+            let dato;
+            let repita;
+
+            do {
+                repita = false;
+                dato = Number(prompt(msg));
+                if (isNaN(dato) || dato < 0 || dato > 100000000000000) {
+                    alert("Cantidad incorrecta, indique un número positivo: ")
+                    repita = true;
+                }
+            } while (repita)
+            return dato;
+        }
+
+        //MAIN
+        let numero = 1, sumatoriaNumbers = 0, cantNumbers = 0, highestNumber = 0, lowestNumber = 0;
+        while (true) {
+            numero = validateNumber("Indique un numero entero ó CERO si quiere parar.  ")
+            if (numero === 0) break;
+            else {
+                sumatoriaNumbers += numero;
+                cantNumbers++;
+                if (highestNumber < numero) {
+                    highestNumber = numero;
+                    if (lowestNumber === 0) {
+                        lowestNumber = numero;
+                    } else if (lowestNumber > numero) {
+                        lowestNumber = numero;
+                    }
+                }
+            }
+        }
+        document.getElementById("datos").innerHTML += `<tr><td> ${sumatoriaNumbers} </td><td> ${cantNumbers} </td><td> ${highestNumber} </td><td> ${lowestNumber}</td></tr>`
+    </script>
+    
+</body>
+</html>

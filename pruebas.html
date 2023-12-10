@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOMINA</title>
+</head>
+<body>
+    <div class="contenedor">
+        <section>
+            <table id="invoicesPending" border="">
+                <tr>
+                    <th colspan="2">Invoices pending</th>
+                </tr>
+                <tr>
+                    <th>Code</th>
+                    <th>Price</th>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <table id="invoicesPaid" border="">
+                <tr>
+                    <th colspan="2">Invoices paid</th>
+                </tr>
+                <tr>
+                    <th>Code</th>
+                    <th>Price</th>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <button onclick="AddFacturee()">Agregar factura</button>
+    <button onclick="deleteFacturee()">Cancelar factura</button>
+    <script>
+        const facturesPending = new Map();
+        //Funcion para validar string
+        const checkString = function(msg){
+            let dato,repita;
+            do {
+                repita = false;
+                dato = prompt(msg)
+                if (dato === null){
+                    alert("Incorrect code, try again!  ")
+                    repita = true;
+                }
+            } while (repita === true)
+            return dato; 
+        }
+
+        //Funcion para validar número
+        const checkNumber =  function(msg){
+            let dato;
+            let repita;
+            do {
+                repita = false;
+                dato = Number(prompt(msg));
+                if (isNaN(dato) || dato <= 0) {
+                    alert("Cantidad incorrecta, indique un número positivo: ")
+                    repita = true;
+                }
+            } while (repita)
+            return dato;
+        }
+        //Agregar factura
+        const AddFacture = function(facturesPending) {
+            let price, code;
+            price = checkNumber("What is the envoice price?  ");
+            code = checkString("What is the envoice code?  ");
+            facturesPending.set(code, price);
+            document.getElementById("invoicesPending").innerHTML += `<tr><td>${code}</td><td>${price}</td></tr>`;
+        }
+
+        const AddFacturee = function() {
+            AddFacture(facturesPending)  
+        }
+
+        //funcion para tomar ID de
+        const deleteFacture = function(facturesPending) {
+            console.log(facturesPending)
+            let codeFacture = prompt("Indique el codigo de la factura que quiere eliminar:  ");
+            if (facturesPending.has(codeFacture) === true) {
+                facturesPending.delete(codeFacture);
+            } else {
+                alert ("La factura no existe, verifique el codigo. ")
+            }
+        }    
+        const deleteFacturee = function() {
+            deleteFacture(facturesPending);
+        }
+
+ 
+    </script>
+</body>
+</html>
