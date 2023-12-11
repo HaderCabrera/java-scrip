@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <form action="" id="datos">
+        <label for="fword">Palabra:  </label>
+        <input type="text" name="fword" id="fword">
+        <br>
+        <label for="fprefix">Prefijo:  </label>
+        <input type="text" name="fprefix" id="fprefix">
+    </form>
+    <input onclick="addWord()" type="submit" value="Enviar palabra">
+    <input onclick="searchWord()" type="submit" value="Buscar prefijo">
+
+    <script>
+        let words = new Array();
+
+        //AGREGAR PALABRA
+        const addWord = function(words) {
+            const wordForm = document.getElementById("datos") //tomar datos de un formulario por ID
+            const formData = new FormData(wordForm)
+
+            //hay que recorrer formData para poder tomar valores
+            for (const elemento of formData) {
+                console.log(elemento)              
+        }
+        //MAIN
+    
+
+    </script>
+
+</body>
+</html>
