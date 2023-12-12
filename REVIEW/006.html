@@ -6,30 +6,37 @@
     <title></title>
 </head>
 <body>
-    <form action="" id="datos">
+    <!--FORMULARIO PARA PREFIJO-->
+    <form action="" id="datos1">
         <label for="fword">Palabra:  </label>
         <input type="text" name="fword" id="fword">
         <br>
+    </form>
+    <!--FORMULARIO PARA PREFIJO-->
+    <form action="" id="datos2">
         <label for="fprefix">Prefijo:  </label>
         <input type="text" name="fprefix" id="fprefix">
     </form>
-    <input onclick="addWord()" type="submit" value="Enviar palabra">
+    <!--LLAMAR FUNCIONES DE LOS BOTONES-->
+    <input onclick="addWordd()" type="submit" value="Enviar palabra">
     <input onclick="searchWord()" type="submit" value="Buscar prefijo">
 
     <script>
         let words = new Array();
-
+        let prefix = "";
         //AGREGAR PALABRA
         const addWord = function(words) {
-            const wordForm = document.getElementById("datos") //tomar datos de un formulario por ID
+            //tomar datos y meterlos en FORDATA
+            const wordForm = document.getElementById("datos1") //tomar datos de un formulario por ID
             const formData = new FormData(wordForm)
-
-            //hay que recorrer formData para poder tomar valores
-            for (const elemento of formData) {
-                console.log(elemento)              
+            console.log(formData)
+            words.push(formData.get('fword'))
         }
-        //MAIN
-    
+        //pasarle array de palabras a funcion de agregar
+        const addWordd = function() {
+            addWord(words)
+        }
+
 
     </script>
 
