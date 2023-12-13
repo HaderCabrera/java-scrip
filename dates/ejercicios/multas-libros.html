@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         const fecha1 = prompt("Digite la fecha de entrega pactada. [mes/dia/año] ");
+         const fecha2 = prompt("Fecha pactada. [00/00/0000]");
+
+         const dateFechaPactada = new Date(fecha1); //recibe mes/dia/año
+         const dateFechaEntrega = new Date(fecha2);
+
+         const condicion = dateFechaEntrega.getTime() - dateFechaPactada.getTime();
+
+         if (condicion > 0) {
+            const diasPasados = condicion / 86400000 ;
+            if (diasPasados <= 3){
+                console.log(`seras multado con $ 7.000 COP por pasarse ${diasPasados} dias.`)    
+            } else {
+                console.log(`seras multado con $ 10.000 COP por pasarse ${diasPasados} dias. Sansicon de 6 meses.`)
+            }
+         } else {
+            console.log("Gracias por entregar a tiempo.")
+         }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //crear una promesa que simula una operacion asincrona
+        const miPromesa = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const exito = true;
+                if (exito) {
+                    resolve("La promesa se cumplio con exito")
+                } else {
+                    reject("Hubo un error al cumplir la promesa")
+                }
+            },2000);
+        });
+
+        miPromesa
+            .then(resultado => {
+                console.log("Exito:", resultado); //se ejecuta cuando la promesa se cumple
+            })
+            .catch(error => {
+                console.log("Error:",error); //manejar errorres si la promesa se rechaza
+            });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validar correo</title>
+</head>
+<body>
+    <script>
+
+        try {
+            const correo = prompt("Digite el correo electronido. Example: N@NN.N");
+            const ArrayCorreo = correo.split("@");
+
+            if (ArrayCorreo[0] === 1) {
+                const arrayPartTwo = ArrayCorreo[1].split(".")
+                console.log(arrayPartTwo)
+                if (arrayPartTwo.length === 2) {
+                    console.log("Correo correcto"); 
+
+                } 
+            } else {
+                    throw new Error("Verifique despues de el '@'");
+                }
+        }
+        catch (e) {
+            console.error(`Se produjo un error: ${e.message}`)
+        }
+    </script>
+</body>
+</html>
