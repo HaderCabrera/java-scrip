@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const animales = [
+        //     {
+        //         raza: "Perro",
+        //         cantidad: 5
+        //     },
+        //     {
+        //         raza: "Gato",
+        //         cantidad: 6
+        //     }
+        // ];
+        // const aves = ["Gallina", "Paloma", "Aguila"]
+
+        // const raza = aves.find((animal) => {
+        //     return animal === "Aguila";
+        // })
+        // console.log(typeof(raza))
+        // console.log(raza)
+
+        // const motosDisponibles = [
+        //     {
+        //         nombre: "AKT200",
+        //         precio: 1450000,
+        //         modelo: 2016
+        //     },
+        //     {
+        //         nombre:"CR5200",
+        //         precio: 4200000,
+        //         modelo: 2020
+        //     },
+        //     {
+        //         nombre: "BOXERCT",
+        //         precio: 3900000,
+        //         modelo: 2016,
+        //     }
+        // ];
+         
+        // const motoBusqueda = prompt("Que moto esta buscando? ")
+        // const datosBusqueda = motosDisponibles.find((moto) => moto.nombre === motoBusqueda)    
+
+        // console.log(datosBusqueda)
+
+        /*METODO FILTER ->> ME DEVUELVE UN ARRAY CON EL ELEMENTO QUE CUMPLE LO QUE ESTOY BUSCANDO*/
+        const motosDisponibles = [
+            {
+                marca: "AKT",
+                modelo: 2019,
+                precio: 2300000,
+                nombre: "TT125"
+            },
+            {
+                marca: "AUTECO",
+                modelo: 2015,
+                precio: 2300000,
+                nombre: "CR5200 AKT"
+            },
+            {
+                marca: "YAMAHA",
+                modelo: 2018,
+                precio: 7300000,
+                nombre: "XTZ250"
+            }
+        ];
+
+        const motoBuscada = prompt("Digite la moto que busca: ")
+        const busqueda = motosDisponibles.filter((moto) => (moto.marca === motoBuscada || moto.nombre.includes(motoBuscada)))
+        console.log(busqueda)
+
+    </script>
+</body>
+</html>
