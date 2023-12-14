@@ -7,14 +7,28 @@
 </head>
 <body>
     <script>
-        let edad = Number(prompt("Ingrese su edad"))
-        if (edad < 18) {
-            alert("La edad minima para estar en CAMPUSLANDS es 18.")
-        } else if (edad >= 18 && edad < 29){
-            alert("Puedes estar en Campuslands.")
-        } else{
-            alert("Tu edad no cumple para nuestro Campus.")
+            async function getNombre(idPokemon) {
+
+            const url = `https://pokeapi.co/api/v2/pokemon/${idPokemon}`;
+            const respuesta = await fetch(url);
+
+            if(respuesta.status != 200) {
+                throw new Error("Error. Pokemon no existe");
+            }
+
+            const json = await respuesta.json();
+            return json;
         }
+
+        (async function(){
+            try {
+                let urlImg = await getNombre("20");
+                console.log(urlImg);
+
+            } catch (error) {
+                console.error(error.message);
+            }
+        })()
     </script>
 </body>
 </html>
