@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. Promesas
+    //     function getNombre(nomusu) {
+    //         const url = `https://api.github.com/users/${nomusu}`;
+
+    //         //fetch es una promesa
+    //         fetch(url)
+    //             .then(respuesta => respuesta.json())
+    //             .then(json => {
+    //                 console.log(json.name);
+    //             })
+    //     }
+    //     getNombre("HaderCabrera");
+
+        //2. ASYNC - AWAIT
+        // async function getNombre(nomusu) {
+        //     const url = `https://pokeapi.co/api/v2/pokemon/${nomusu}`;
+
+        //     const respuesta = await fetch(url);
+            
+        //     if(respuesta.status != 200) {
+        //         throw new Error("Error. Pokemon no existe");
+        //     }
+
+        //     const json = await respuesta.json();
+
+        //     console.log(json.sprites.front_default);
+        // }
+        // getNombre("bulbasaur")
+        // getNombre("hader") //para entrar en error
+        //     .then(nombre => console.log(nombre))
+        //     .catch(error => console.error(error.message));
+
+            //3.0 NOSE
+            async function getNombre(nomusu) {
+            const url = `https://pokeapi.co/api/v2/pokemon/${nomusu}`;
+
+            const respuesta = await fetch(url);
+            
+            if(respuesta.status != 200) {
+                throw new Error("Error. Pokemon no existe");
+            }
+
+            const json = await respuesta.json();
+
+            return json.sprites.front_default;
+        }
+
+        (async function(){
+            try {
+                let urlImg = await getNombre('pikachu');
+                console.log(urlImg);
+
+                urlImg = await getNombre('pikachu');
+                console.log(urlImg);
+            } catch (error) {
+                console.error(error.message);
+            }
+        })()
+     </script>
+
+
+</body>
+</html>
