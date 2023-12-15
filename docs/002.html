@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            text-align: center;
+        }
+        section {
+            margin: 20px 0;
+        }
+        #container {
+            border: 1px solid black;
+            display: grid;
+            grid-template-columns: 30% auto 30%;
+            margin: 50px 300px;
+            padding: 80px;
+            text-align: center;
+            align-items: center;
+        }
+        #seccion1{
+            grid-column: 1 / 2;
+            display: block;
+        }
+        #seccion2{
+            grid-column: 2 / 3;
+            display: block;
+        }
+        #seccion3{
+            grid-column: 3 / 4;
+            display: block;
+        }
+        ul {
+            text-align: left;
+        }
+        img {
+            height: 200px;
+            width: 200px;
+
+        }
+    </style>
+
+</head>
+<body>
+    <h1>EL CLUB DE LA PELEA POKEMON</h1>
+    <div id="container">
+        <section id="seccion1">
+            <section id="11">
+                <div><button onclick="callPersonaje()">MI POKEMON</button></div>
+            </section>
+            <section id="12">
+            </section>
+            <section id="13">
+                <ul id="13-date">
+                    
+                </ul>
+            </section>
+            <section id="winner1">SI GANA</section>
+        </section>
+        <section id="seccion2">
+            <button onclick="iniciarCpu()">Figth</button>
+        </section>
+        <section id="seccion3">
+            <section id="31">
+                <div>CPU Pokemón</div>
+            </section>
+            <section id="32">
+            </section>
+            <section id="33">
+                <ul id="33-date">
+                    
+                </ul>
+            </section>
+            <section id="winner2">SI GANA</section>
+        </section>
+    </div>
+    <script>
+    /*VERIFICAR FUNCION DE SETIMEOUT PARA EL CPU Y PONER A PELEAR*/
+
+
+    //GENERAR DATOS DE PERSONAJE RANDOM
+    async function generarDatos() {
+        personaje = 1 + Math.floor(Math.random() * 1000);
+        const url = `https://pokeapi.co/api/v2/pokemon/${personaje}`;   
+        respuesta = await fetch(url);
+        const json = await respuesta.json();
+        console.log();
+        let mapSkill = new Map();
+        for (i = 0; i <6; i++){
+            mapSkill.set(json.stats[i].stat.name,json.stats[i].base_stat)
+        }
+        mapSkill.set("imagen",json.sprites.other["official-artwork"].front_default)
+        return mapSkill;
+    }
+    //contantes para validaciones
+    const jugador1 = new Array(),jugador2 = new Array();
+
+    //FUNCION PRINCIPAL
+    async function callJuego(){
+
+        if (jugador2.length === 0) {
+            try {
+            const descripcion = await generarDatos();
+            //PASAR A HTML
+            arrayCaracteristicas = '';
+            descripcion.forEach((valor, llave) => {
+                if (llave != "imagen") {
+                    arrayCaracteristicas += `${llave} : ${valor}<br>` ;   
+                }
+            })
+            document.getElementById("13-date").innerHTML = arrayCaracteristicas;
+            document.getElementById("12").innerHTML = `<img src="${descripcion.get('imagen')}" alt="miPokemon">`;
+            jugador1.push(1);
+            } catch (e) {
+                console.log(e)
+            }
+        } else {
+            alert("ESPERE A QUE LA BATALLA TERMINE SI QUIERE VOLVER A ELEGIR...")
+        }
+    }
+
+    //LLAMADO CON EL BOTON
+    const callPersonaje = function() {
+        callJuego();
+    }
+
+    //LLAMADO CON EL BOTON A PELEAR
+
+    async function iniciarCpu() {
+        if (jugador1.length != 0 && jugador2.length === 0) {
+            const descripcion = await generarDatos();
+        //PASAR A HTML
+        arrayCaracteristicas = '';
+        descripcion.forEach((valor, llave) => {
+            if (llave != "imagen") {
+                arrayCaracteristicas += `${llave} : ${valor}<br>` ;   
+            }
+        })
+        document.getElementById("33-date").innerHTML = arrayCaracteristicas;
+        document.getElementById("32").innerHTML = `<img src="${descripcion.get('imagen')}" alt="miPokemon">`;
+        jugador2.push(1);
+        } else if (jugador1.length === 1 && jugador2.length === 1) {
+            alert("ESPERE A QUE LA BATALLA FINALICE...")
+        } else {
+            alert("ESCOJA PRIMERO UN PERSONAJE...");
+        }
+    }
+    </script>
+</body>
+</html>
