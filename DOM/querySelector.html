@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .resultado {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <p id="parrafo1" class="resultado">Este es el parrafo 1</p>
+    <p id="parrafo2">Este es el parrafo 2</p>
+    <script>
+        //Me devuelve el primer elemento de esa clase
+        //Utilizando querySelector para seleccionar el primer parrafo con la clase "resiltado"
+
+        const parrafoResaltado = document.querySelector('.resultado');
+
+        //Haciendo algo con el elemento seleccinado, por ejemplo, cambiar su estilo
+        parrafoResaltado.style.fontSize = '28px';
+
+        //Tambien podemos seleccionar por ID
+        const segundoParrafo = document.querySelector('#parrafo2');
+
+        segundoParrafo.innerHTML = 'Texto modificado para el segundo parrafo';
+
+    </script>
+</body>
+</html>

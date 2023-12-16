@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementsary por CLASES</title>
+</head>
+<body>
+    <div class="miClase">Elemento 1</div>
+    <div class="miClase">Elemento 2</div>
+    <div class="miClase">Elemento 3</div>
+
+    <script>
+        //utilizando getELementsByClassName para seleccionar elementos por su clase
+        var elementos = document.getElementsByClassName('miClase');
+        console.log(elementos)
+        //iterando sobre los elementos seleccinaodos
+        for (var i = 0; i < elementos.length; i++) {
+            //haciendo algo con cada elemento, por ejhemplo, cambiando su contenido
+            elementos[i].innerHTML = 'Nuevo contenido para' + (i + 1);
+        }
+    </script>
+</body>
+</html>

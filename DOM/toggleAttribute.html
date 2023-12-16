@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Agregando atributo y consultando si exite</title>
+    </head>
+    <body>
+
+        <div id="miElemento">Contenido del elemento</div>
+
+        <script>
+            //seleccionar el elemento
+            const miElemento = document.getElementById('miElemento');
+            //Agregar o elminar el atributo 'data-info' basado en su exitencia actual
+            miElemento.toggleAttribute('data-info');
+
+            //Mostrar en la consola si el attributo 'data-info' esta presente despues de la operacion
+            console.log('Data-info presente?', miElemento.hasAttribute('data-info'));
+            
+        </script>
+    </body>
+    </html>
+</body>
+</html>
