@@ -226,32 +226,27 @@
     }
 
     //FUNCION DE BATALLA
-    function batalla() {
-        if(jugador1[0].get('hp') >= 0 && jugador2[0].get('hp') >= 0 ) {
-            var_turno = Math.abs(jugador1[0].get('speed') - jugador2[0].get('speed') );
-            console.log("me sali")
-            if (jugador1[0].get('speed') > jugador2[0].get('speed')) {
-                //ATACA MIPOKE PRIMERO
-                do {
-                    let arrayCaracteristicas = '';
-                    console.log(jugador2)
-                    let hpActual = (jugador2[0].get('hp') - (jugador2[0].get('defense') * (1 + (jugador2[0].get('speed')/100)) - jugador2[0].get('attack')));
-                    jugador2[0].set('hp',hpActual );
-                    console.log(jugador2)
 
-                    //PASAR A HTML
+    const batalla = function () {
+        if (jugador1[0].get('hp') >0 && jugador1[0].get('hp')) {
+            let var_turno = Math.abs(jugador1[0].get('speed') - jugador2[0].get('speed'))
+            console.log(var_turno)
+            let golpe = jugador2[0].get('hp') - (jugador2[0].get('defense') * (1 + (jugador2[0].get('speed') / 100)))  - jugador2[0].get('attack');
+            if (jugador1[0].get('speed') > jugador2[0].get('speed')) {
+                for (i = 0; i < var_turno; i++) {
+                    let arrayCaracteristicas = '';
+                    //HACER N VECES "VAR_TURNO"
+                    jugador2[0].set('hp', (jugador2[0].get('hp') - golpe))
+                    //ACTULIZAR VIDA HTML
                     jugador2[0].forEach((valor, llave) => {
-                    if (llave != "imagen") {
-                        arrayCaracteristicas += `<li><strong>${llave}</strong> : ${valor}<br></li>` ;   
-                        }
+                        if (llave != "imagen") {
+                                arrayCaracteristicas += `<li><strong>${llave}</strong> : ${valor}<br></li>` ;   
+                            }
                     })
                     document.getElementById("33-date").innerHTML = arrayCaracteristicas;
-                }while (jugador2[0].get('hp') > 0)     
+                    if (jugador2[0].get('hp') <= 0 ) return true;
 
-            } else {
-                //ATACA CPUPOKE PRIMERO
-                return true;
-
+                }
             }
         }
     }
