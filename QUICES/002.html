@@ -225,31 +225,67 @@
         })
     }
 
+    //FUNCION PARA IMPRIMIR EN HTML NUEVOS DATOS DE POKEMONES
+    const actualizarSkill = function() {
+        let arrayCaracteristicas = '';
+        //PASAR A HTML
+        jugador2[0].forEach((valor, llave) => {
+            if (llave != "imagen") {
+                arrayCaracteristicas += `<li><strong>${llave}</strong> : ${valor}<br></li>` ;   
+            }
+        })
+        document.getElementById("33-date").innerHTML = arrayCaracteristicas;
+    }
+    //FUNCION PARA IMPRIMIR EN HTML NUEVOS DATOS DE POKEMONES
+    const actualizarSkill2 = function() {
+        let arrayCaracteristicas = '';
+        //PASAR A HTML
+        jugador1[0].forEach((valor, llave) => {
+            if (llave != "imagen") {
+                arrayCaracteristicas += `<li><strong>${llave}</strong> : ${valor}<br></li>` ;   
+            }
+        })
+        setTimeout(() => {
+            document.getElementById("13-date").innerHTML = arrayCaracteristicas;
+        },500)
+
+    }
+
     //FUNCION DE BATALLA
 
     const batalla = function () {
-        if (jugador1[0].get('hp') >0 && jugador1[0].get('hp')) {
-            let var_turno = Math.abs(jugador1[0].get('speed') - jugador2[0].get('speed'))
-            console.log(var_turno)
-            let golpe = jugador2[0].get('hp') - (jugador2[0].get('defense') * (1 + (jugador2[0].get('speed') / 100)))  - jugador2[0].get('attack');
-            if (jugador1[0].get('speed') > jugador2[0].get('speed')) {
-                for (i = 0; i < var_turno; i++) {
-                    let arrayCaracteristicas = '';
-                    //HACER N VECES "VAR_TURNO"
-                    jugador2[0].set('hp', (jugador2[0].get('hp') - golpe))
-                    //ACTULIZAR VIDA HTML
-                    jugador2[0].forEach((valor, llave) => {
-                        if (llave != "imagen") {
-                                arrayCaracteristicas += `<li><strong>${llave}</strong> : ${valor}<br></li>` ;   
-                            }
-                    })
-                    document.getElementById("33-date").innerHTML = arrayCaracteristicas;
-                    if (jugador2[0].get('hp') <= 0 ) return true;
+        let turno;
 
-                }
-            }
+        if (jugador1[0].get('speed') > jugador2[0].get('speed')) {
+            turno = 1;
+        } else {
+            turno = 0;
         }
-    }
+
+        do {
+            if (turno === 1) {
+                for (i = 0; i < 2; i++) {
+                    jugador2[0].set('hp', jugador2[0].get('hp') - 10)
+                    actualizarSkill();
+                    if(jugador2[0].get('hp') <= 0) return 
+                    console.log("lO HICE2", i)
+                }
+                turno = 0;
+            } else if (turno === 0) {
+                for (i = 0; i < 2; i++) {
+                    jugador1[0].set('hp', jugador1[0].get('hp') - 10)
+                    actualizarSkill2();
+                    if(jugador1[0].get('hp') <= 0) return 
+                    console.log("lO HICE1", i)
+                } 
+                turno = 1;
+            } else {
+                console.log("EMPTA DE SKILL")
+            }
+            console.log(jugador1,jugador2)
+        } while (jugador1[0].get('hp') > 0 && jugador2[0].get('hp') > 0)   
+        
+    }   
 
     //LLAMADO A PELEAR
     async function iniciarCpu() {
@@ -280,7 +316,7 @@
         jugador2.push(espereMano);
 
         //LLAMAR A LA FUNCION DE INICIAR COMBATE
-       const gabadire = await batalla();
+       const gabadire =  batalla();
     }
 
     //PONER MENSAJE DE QUE SELECCIONE UN POKEMON INICIALMENTE
