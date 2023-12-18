@@ -5,47 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+
         *{
             text-align: center;
+            margin: 0;
+            padding: 0;
+            box-sizing: 0;
         }
-        section {
-            margin: 20px 0;
+        body {
+            background-color: beige;
         }
         #container {
-            border: 1px solid black;
             display: grid;
-            grid-template-columns: 30% auto 30%;
-            margin: 50px 100px;
-            padding: 80px;
+            grid-template-columns: 35% auto 35%;
+            margin: 10px 100px;
             text-align: center;
             align-items: center;
+            background-color: beige;
+
         }
         #seccion1{
             grid-column: 1 / 2;
             display: block;
-            height: 70vh;
+            height: 80vh;
+            color: black;
+            background: conic-gradient(rgb(1, 1, 251,0.3), rgb(255, 0, 0,0.9));
+            border-radius: 10px;
+            padding-top: 20px;
+            background-color: rgb(0, 0, 0,0.7);
+            border: 10px solid black;
         }
         #seccion2{
             grid-column: 2 / 3;
             display: block;
+
         }
         #seccion3{
             grid-column: 3 / 4;
             display: block;
-            height: 70vh;
+            height: 80vh;
+            color: black;
+            background: conic-gradient(rgb(1, 1, 251,0.9), rgb(255, 0, 0,0.3));
+            border-radius: 10px;
+            padding-top: 20px;
+            background-color: rgb(0, 0, 0,0.7);
+            border: 10px solid black;
         }
         ul {
             text-align: left;
             margin: 0;
-            padding: 0;
+            padding: 3px 40px;
+            list-style: none;
+            text-transform: capitalize;
+        }
+        li {
+            text-align: left;
         }
         img {
             object-fit: cover;
-            height: 100%;
-            width: 100%;
-
+            height: 70%;
+            width: 70%;
+            background-color: black;
+            border-radius: 60px;
+        }
+        #seccion1 div {
+            padding-bottom: 20px;
+        }
+        #seccion3 div {
+            padding-bottom: 20px;
+        }
+        .igualar {
+            height: 40px;
         }
 
+        button{
+            background:azure;
+            color:yellow;
+            background-color: rgba(0, 0, 255, 0.3);
+            border:none;
+            position:relative;
+            height:30px;
+            font-size:1.2em;
+            padding:0 2em;
+            cursor:pointer;
+            transition:800ms ease all;
+            outline:none;
+            font-weight:800;
+        }
+        button:hover{
+            background-color: rgba(0, 0, 255, 0.3);
+            color:yellow;
+        }
+        button:before,button:after{
+            content:'';
+            position:absolute;
+            top:0;
+            right:0;
+            height:2px;
+            width:0;
+            background: rgb(255, 200, 0);
+            transition:400ms ease all;
+        }
+        button:after{
+            right:inherit;
+            top:inherit;
+            left:0;
+            bottom:0;
+        }
+        button:hover:before,button:hover:after{
+            width:100%;
+            transition:800ms ease all;
+        }
     </style>
 
 </head>
@@ -54,7 +124,7 @@
     <div id="container">
         <section id="seccion1">
             <section id="11">
-                <div><button onclick="callPersonaje()">MI POKEMON</button></div>
+                <div class="igualar"><button onclick="callPersonaje()" id="sixth">MI POKEMON</button></div>
             </section>
             <section id="12">
             </section>
@@ -63,26 +133,28 @@
                     
                 </ul>
             </section>
-            <section id="winner1">SI GANA</section>
+            <section id="winner1"></section>
         </section>
         <section id="seccion2">
-            <button onclick="iniciarCpu()">Figth</button>
+            <p style="color: red; font-size: small;" id="mensajeInicio"></p>
+            <button onclick="iniciarCpu() " id="botonPelea" disabled> Figth</button>
         </section>
         <section id="seccion3">
             <section id="31">
-                <div>CPU Pokemón</div>
+                <div class="igualar">CPU POKEMON</div>
             </section>
             <section id="32">
             </section>
             <section id="33">
                 <ul id="33-date">
-                    
+
                 </ul>
             </section>
             <section id="winner2"></section>
         </section>
     </div>
     <script>
+
     /*VERIFICAR FUNCION DE SETIMEOUT PARA EL CPU Y PONER A PELEAR*/
 
 
@@ -95,34 +167,41 @@
         let mapSkill = new Map();
         mapSkill.set("name",json.species.name)
         for (i = 0; i <6; i++){
-            console.log(i)
             if(i != 3 && i != 4){
                 mapSkill.set(json.stats[i].stat.name,json.stats[i].base_stat);
             }
         }
-        mapSkill.set("imagen",json.sprites.other["official-artwork"].front_default)
+        mapSkill.set("imagen",json.sprites.other["official-artwork"].front_default);
+
+        //habilitar boton de pelea, por defecto desabilitado
+        const botonPelear = document.getElementById('botonPelea');
+        botonPelear.removeAttribute('disabled');
+
         return mapSkill;
+
     }
 
     //contantes para validaciones
     const jugador1 = new Array(),jugador2 = new Array();
 
-    //FUNCION PRINCIPAL
+    //FUNCION "BOTON MI POKEMON ->>> CARGA EL POKEMON DEL USUARIO"
     async function callJuego(){
-
         if (jugador2.length === 0) {
             try {
+            jugador1.pop();
             const descripcion = await generarDatos();
             //PASAR A HTML
             arrayCaracteristicas = '';
             descripcion.forEach((valor, llave) => {
                 if (llave != "imagen") {
-                    arrayCaracteristicas += `${llave} : ${valor}<br>` ;   
+                    arrayCaracteristicas += `<strong><li>${llave}</strong> : ${valor}<br></li>` ;   
                 }
             })
             document.getElementById("13-date").innerHTML = arrayCaracteristicas;
             document.getElementById("12").innerHTML = `<img src="${descripcion.get('imagen')}" alt="miPokemon">`;
-            jugador1.push(1);
+            jugador1.push( descripcion);
+            const mensajeUsuario = document.getElementById('mensajeInicio');  
+            mensajeUsuario.innerHTML = '';
             } catch (e) {
                 console.log(e)
             }
@@ -136,30 +215,84 @@
         callJuego();
     }
 
+    //FUNCION PARA RETARDO EN MORTRAR IMAGENES
+    const generarImagenesCpu = function() {
+        return new Promise((resolve) => {
+            setTimeout (() => {
+                const descripcion = generarDatos();
+                resolve(descripcion)
+            },500)
+        })
+    }
+
+    //FUNCION DE BATALLA
+    function batalla() {
+        if(jugador1[0].get('hp') >= 0 && jugador2[0].get('hp') >= 0 ) {
+            var_turno = Math.abs(jugador1[0].get('speed') - jugador2[0].get('speed') );
+            console.log("me sali")
+            if (jugador1[0].get('speed') > jugador2[0].get('speed')) {
+                //ATACA MIPOKE PRIMERO
+                do {
+                    let arrayCaracteristicas = '';
+                    console.log(jugador2)
+                    let hpActual = (jugador2[0].get('hp') - (jugador2[0].get('defense') * (1 + (jugador2[0].get('speed')/100)) - jugador2[0].get('attack')));
+                    jugador2[0].set('hp',hpActual );
+                    console.log(jugador2)
+
+                    //PASAR A HTML
+                    jugador2[0].forEach((valor, llave) => {
+                    if (llave != "imagen") {
+                        arrayCaracteristicas += `<li><strong>${llave}</strong> : ${valor}<br></li>` ;   
+                        }
+                    })
+                    document.getElementById("33-date").innerHTML = arrayCaracteristicas;
+                }while (jugador2[0].get('hp') > 0)     
+
+            } else {
+                //ATACA CPUPOKE PRIMERO
+                return true;
+
+            }
+        }
+    }
+
     //LLAMADO A PELEAR
     async function iniciarCpu() {
+        jugador2.pop();
         arrayCaracteristicas = '';
         document.getElementById("33-date").innerHTML = arrayCaracteristicas;
         const dateInicio = new Date(); 
         const milisegundosInicial = dateInicio.getTime()
         let condicion;
         let descripcion;
+        let espereMano;
         do {
             const dateActual = new Date();
             const milisegundosActual = dateActual.getTime()
             condicion = (milisegundosActual - milisegundosInicial) / (1000);
-            descripcion = await generarDatos();
-            document.getElementById("32").innerHTML = `<img src="${descripcion.get('imagen')}" alt="miPokemon">`;            
+            //LLAMAR A FUNCION QUE GENERA ESPERA
+            espereMano = await generarImagenesCpu();
+            document.getElementById("32").innerHTML = `<img src="${espereMano.get('imagen')}" alt=z"miPokemon">`;
+        
         } while (condicion < 7)
         //PASAR A HTML
-        descripcion.forEach((valor, llave) => {
+        espereMano.forEach((valor, llave) => {
             if (llave != "imagen") {
-                arrayCaracteristicas += `${llave} : ${valor}<br>` ;   
+                arrayCaracteristicas += `<li><strong>${llave}</strong> : ${valor}<br></li>` ;   
             }
         })
         document.getElementById("33-date").innerHTML = arrayCaracteristicas;
+        jugador2.push(espereMano);
+
+        //LLAMAR A LA FUNCION DE INICIAR COMBATE
+       const gabadire = await batalla();
     }
-    
+
+    //PONER MENSAJE DE QUE SELECCIONE UN POKEMON INICIALMENTE
+    const mensajeUsuario = document.getElementById('mensajeInicio');  
+    mensajeUsuario.innerHTML = 'Seleccion un POKEMON para iniciar el juego';     
+
+
     </script>
 </body>
 </html>
