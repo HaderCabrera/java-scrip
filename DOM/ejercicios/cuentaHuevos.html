@@ -4,33 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 2fr 1fr;
+            align-content: end;
+            align-items:end;
+        }
+        #numeros {
+          grid-column: 1 / 2; 
+          grid-row: 1 / 2; 
+          text-align: right;   
+        }
+        #resultadoo {
+            grid-column: 1 / 2; 
+            grid-row: 2 / 3;
+            text-align: right;          
+        }
+        #sumarr {
+            grid-column: 2 / 3; 
+            grid-row: 1 / 2; 
+            text-align: left;
+            padding: 20px 10px;    
+  
+        }
+        
+    </style>
 </head>
+
 <body>
-    <form action="" onsubmit="sumar()">
-        <label for="firstNumber">Número 1:</label>
-        <input id="tomar1" type="text" name="firstNumber" >
-        <br> <br>
-        <label for="secondNumber">Número 2:</label>
-        <input id="tomar2" type="text" name="secondNumber">
-        <input type="submit" name="" id="" value="SUMAR">
-        <br><br>
-        <label for="resultado">Resultado:</label>
-        <input id="sumaa" type="text" name="resultado" id="resultado">
-    </form>
+
+    <div class="container">
+        <div id="numeros">
+            <form action="" id="datos">
+                <label for="numero1">Numero 1:</label>
+                <input type="number" name="numero1" id="numero1">
+                <br>
+                <label for="numero2">Numero 2: </label>
+                <input type="number" name="numero2" id="numero2">
+                <hr style="width:50%;text-align:right;margin-left: 50%;" >
+            </form>
+        </div>
+        <div id="resultadoo">
+            <label for="resultado">Resultado: </label>
+            <input type="number" name="resultado" id="resultado">
+        </div>
+        <div id="sumarr">
+            <input onclick="capturarForm()" type="submit" value="Sumar">
+        </div>
+    </div>
+
 
     <script>
-    function sumar() {
-      let inputValue1 =parseInt(document.getElementById("tomar1").value);
-      document.getElementById("tomar1").innerHTML = inputValue1; 
-      let inputValue2 =parseInt(document.getElementById("tomar2").value);
-      document.getElementById("tomar2").innerHTML = inputValue2; 
-      console.log(typeof(inputValue1))
-      let suma = inputValue1 + inputValue2;
-            //Seleccioanr el elemento
-      document.getElementById('sumaa').value = suma;
-            //Cambiar el valor del attributo HREF
-        console.log(suma)
+        let suma = 0;
+        const inputSuma = document.getElementById("resultado");
+        //enviar datos del formulario con atributo CAPTION del FORM
+        function capturarForm() {
+            //const form = document.querySelector("form")//tomar datos de un formulario por etiqueta
+            const form = document.getElementById("datos") //tomar datos de un formulario por ID
+            const formData = new FormData(form)
+
+            let valores = '';
+            for (const value of formData.values()) {
+                valores += value;
+            }
+            console.log(valores.length)
+            if (valores.length === 0) {
+                alert('Introduzca numero para sumar');
+            } else {
+                //hay que recorrer formData para poder tomar valores
+                for (const elemento of formData) {
+                    console.log(elemento)
+                    suma += Number(elemento[1]) ;
+                }
+            }
+        inputSuma.value = suma; 
+        suma = 0;
+
     }
     </script>
+
 </body>
 </html>
