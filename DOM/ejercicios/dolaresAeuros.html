@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <div id="numeros">
+            <form action="" id="datos">
+                <label for="numero1">Euros:</label>
+                <input type="text" name="numero1" id="numero1">
+                <br>
+                <label for="numero2">Dolares: </label>
+                <input type="text" name="numero2" id="numero2">
+                <hr style="width:50%;text-align:right;margin-left: 50%;" >
+            </form>
+        </div>
+        <div id="sumarr">
+            <input onclick="capturar1()" type="submit" value="C->>>>F ">
+        </div>
+    </div>
+
+    <script>
+
+
+    async function obtenerDatos() {
+        const url = `https://cdn.dinero.today/api/ecb.json`;   
+        respuesta = await fetch(url);
+        const json = await respuesta.json();
+        return json.rates.EUR
+
+    }
+    //CAMBIO DE DIVISAS CON API'S
+    //enviar datos del formulario con atributo CAPTION del FORM
+    async function capturar1() {
+        let euros = parseFloat(document.getElementById('numero1').value);
+        const datos = await obtenerDatos();
+        const enviar = euros / datos;
+        document.getElementById('numero2').value = enviar.toFixed(2);
+    }
+
+    </script>
+
+    
+</body>
+</html>

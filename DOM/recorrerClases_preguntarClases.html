@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="miElemento" class="clase1 clase2">Contenido del elemento</div>
+    <button onclick="agregarCLase()">Agregar clase</button>
+    <button onclick="contarClases()">Cantidad de clases</button>
+    <button onclick="classNPos()">NO SE QUE HACER</button>
+    <button onclick="existeClase()">Validar si exite una clase</button>
+    <script>
+        //AGREGAR CLASE A UNA EQTIQUETA EN DE HTML
+        const agregarCLase = () => {
+            const elemento = document.getElementById('miElemento');
+            elemento.classList.add('nuevaClase')
+        }
+
+        const contarClases = function() {
+            const elemento = document.getElementById('miElemento');
+
+            const cant = elemento.classList.length;
+            alert("Cantidad de clases: " + cant.toString())
+        }
+
+        const classNPos = function() {
+            const elemento = document.getElementById('miElemento');
+            const claseEnPosicion1 = elemento.classList.item(1);
+            alert("La clase en la posicion indicada es: " + claseEnPosicion1)
+        }
+
+        const existeClase = function() {
+            const elemento = document.getElementById('miElemento');
+            const existeClase = elemento.classList.contains('nuevaClase');
+            alert("Existe la clase: " + existeClase)
+        }
+
+
+    </script>
+    
+</body>
+</html>

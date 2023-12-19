@@ -155,8 +155,7 @@
     </div>
     <script>
 
-    /*VERIFICAR FUNCION DE SETIMEOUT PARA EL CPU Y PONER A PELEAR*/
-
+    /*INDICAR GANADOR*/
 
     //GENERAR DATOS DE PERSONAJE RANDOM
     async function generarDatos() {
@@ -221,7 +220,7 @@
             setTimeout (() => {
                 const descripcion = generarDatos();
                 resolve(descripcion)
-            },500)
+            },1000)
         })
     }
 
