@@ -3,47 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CAMBIO DE DIVISAS CON API'S</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid grey;
+            width: 300px;
+            margin: 100px auto;
+            padding: 10px;
+        }
+        .container div {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
     <div class="container">
-        <div id="numeros">
-            <form action="" id="datos">
-                <label for="numero1">Euros:</label>
-                <input type="text" name="numero1" id="numero1">
-                <br>
-                <label for="numero2">Dolares: </label>
-                <input type="text" name="numero2" id="numero2">
-                <hr style="width:50%;text-align:right;margin-left: 50%;" >
-            </form>
+        <div id="section1">
+            <label for="numero1">Euros:</label>
+            <input type="text" name="numero1" id="numero1">
         </div>
-        <div id="sumarr">
-            <input onclick="capturar1()" type="submit" value="C->>>>F ">
+        <div class="section2">
+            <label for="numero2">Dolares: </label>
+            <input type="text" name="numero2" id="numero2">
+        </div>
+        <div id="seccion3">
+            <input onclick="capturar1()" type="submit" value=" EUR ->>> USD ">
         </div>
     </div>
 
     <script>
-
-
+    //OBTENER DATOS DE API
     async function obtenerDatos() {
         const url = `https://cdn.dinero.today/api/ecb.json`;   
         respuesta = await fetch(url);
         const json = await respuesta.json();
-        return json.rates.EUR
-
+        return json.rates.EUR //retorno factor de conversion para dolares
     }
-    //CAMBIO DE DIVISAS CON API'S
-    //enviar datos del formulario con atributo CAPTION del FORM
+
+    //TOMAR VALOR DE EUROS Y ENVIAR VALOR EN DOLARES
     async function capturar1() {
         let euros = parseFloat(document.getElementById('numero1').value);
-        const datos = await obtenerDatos();
+        const datos = await obtenerDatos(); //Solicitud de factor de conversion.
         const enviar = euros / datos;
-        document.getElementById('numero2').value = enviar.toFixed(2);
+        document.getElementById('numero2').value = enviar.toFixed(2); //Envio valor formateado.
     }
-
     </script>
 
-    
 </body>
 </html>

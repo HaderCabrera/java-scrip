@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sumar dos números con FormData</title>
     <style>
         .container {
             display: grid;
@@ -11,6 +11,7 @@
             grid-template-rows: 2fr 1fr;
             align-content: end;
             align-items:end;
+            margin: 50px;
         }
         #numeros {
           grid-column: 1 / 2; 
@@ -37,10 +38,10 @@
     <div class="container">
         <div id="numeros">
             <form action="" id="datos">
-                <label for="numero1">Grados Centigrados:</label>
+                <label for="numero1">Numero 1:</label>
                 <input type="number" name="numero1" id="numero1">
                 <br>
-                <label for="numero2">Grados farenheit: </label>
+                <label for="numero2">Numero 2: </label>
                 <input type="number" name="numero2" id="numero2">
                 <hr style="width:50%;text-align:right;margin-left: 50%;" >
             </form>
@@ -50,7 +51,7 @@
             <input type="number" name="resultado" id="resultado">
         </div>
         <div id="sumarr">
-            <input onclick="capturarForm()" type="submit" value="Sumar">
+            <input onclick="capturarForm()" type="submit" value="SUMAR">
         </div>
     </div>
 
@@ -58,30 +59,31 @@
     <script>
         let suma = 0;
         const inputSuma = document.getElementById("resultado");
-        //enviar datos del formulario con atributo CAPTION del FORM
-        function capturarForm() {
-            //const form = document.querySelector("form")//tomar datos de un formulario por etiqueta
-            const form = document.getElementById("datos") //tomar datos de un formulario por ID
-            const formData = new FormData(form)
 
-            let valores = '';
-            for (const value of formData.values()) {
-                valores += value;
+        //TOMAR DATOS FORMDATA
+        function capturarForm() {
+            const form = document.getElementById("datos") //tomar datos de un formulario por ID
+            const formData = new FormData(form) //datos de los imput's.
+
+            //Obtener valores para analizar entradas.
+            stringValores = '';
+            for ( valor of formData.values(formData)){
+                stringValores += valor;
             }
-            console.log(valores.length)
-            if (valores.length === 0) {
-                alert('Introduzca numero para sumar');
+
+            //Si digito un numero puedo sumar, de lo contrario ALERT.
+            if (stringValores.length === 0) {
+                alert('Introduzca numero para sumar...');
             } else {
-                //hay que recorrer formData para poder tomar valores
+                //Vuelvo a recorrer para sumar valores.
                 for (const elemento of formData) {
-                    console.log(elemento)
-                    suma += Number(elemento[1]) ;
+                    suma += Number(elemento[1]);
                 }
             }
-        inputSuma.value = suma; 
-        suma = 0;
+            inputSuma.value = suma; //Mandar valor de la suma
+            suma = 0;
+        }
 
-    }
     </script>
 
 </body>

@@ -16,36 +16,34 @@
 <body>
     <div class="container">
         <div id="numeros">
-            <form action="" id="datos">
                 <label for="numero1">Grados Centigrados:</label>
                 <input type="text" name="numero1" id="numero1">
                 <br>
                 <label for="numero2">Grados Farenheit: </label>
                 <input type="text" name="numero2" id="numero2">
-                <hr style="width:50%;text-align:right;margin-left: 50%;" >
-            </form>
+                <hr style="width: 200px;">
         </div>
-        <div id="sumarr">
+        <div id>
+            <!--CON IMPUT TIPO SUBMIT-->
             <input onclick="capturar1()" type="submit" value="C->>>>F ">
         </div>
         <div id="boton2">
-            <input onclick="capturar2()" type="submit" value="F->>>>C">
+            <!--CON BOTON-->
+            <button onclick="capturar2()">F->>>>C</button>
         </div>
     </div>
 
     <script>
-
-        //enviar datos del formulario con atributo CAPTION del FORM
+        //PASAR DE C >>> F
         function capturar1() {
             let centigrados = parseFloat(document.getElementById('numero1').value);
-            numero2.value = (centigrados * (9/5)) + 32; 
+            numero2.value = (centigrados * (9/5)) + 32; // enviar value a segunda caja de texto
         }
-        // de farenheit a centigrados
+        //PASAR DE F >>> C
         function capturar2() {
-            //const form = document.querySelector("form")//tomar datos de un formulario por etiqueta
             let farenheit = parseFloat(document.getElementById('numero2').value);
             const pasar = ((farenheit - 32) * 5) / 9;
-            numero1.value = pasar.toFixed(2);
+            numero1.value = pasar.toFixed(2); // enviar value a primer caja de texto
         }
     </script>
 </body>

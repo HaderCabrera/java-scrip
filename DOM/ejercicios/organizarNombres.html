@@ -8,37 +8,65 @@
         *{
             align-items: center;
             text-align: center;
+
+        }
+        #seccion2 {
+            display: flex;
+            align-items: start;
+            justify-content: center;
+        }
+        button {
+            background-color: aquamarine;
+            height: 30px;
+        }
+        #putName {
+            height: 25px;
         }
     </style>
 </head>
 <body>
+    <p style="color: grey;">Ingrese nombres en la caja de texto de abajo y ordene el listado en el area de texto</p>
     <div id="agregar">
         <label for="putName">Nombre: </label>
         <input type="text" id="putName" class="putName">
         <button id="botonAdd" onclick="agregar()">Agregar y ordenar nombre</button>
     </div>
     <h1>Nombres ordenados</h1>
-    <hr>
-    <input type="text" id="" style="font-size: 200; width: 500px; height: 500px;">
-    <textarea name="" id="ordenados" cols="30" rows="10"></textarea>
+    <hr style="width: 50%;">
+    <div id="seccion2">
+        <textarea name="" id="ordenados" cols="40" rows="20">Nombres organizados</textarea>
+        <button id="limpiar" onclick="limpiarTablero()"> LIMPIAR</button>
+    </div>
+
     <script>
         const nombres = new Array();
 
+        //IMPRIMIR DATOS EN EL TEXTAREA
+        let imprimirDatos = function(nombresOrganizados) {
+            let arrayNombres = '';
+            for(i = 0; i< nombresOrganizados.length; i++){
+                arrayNombres += nombresOrganizados[i] + '\n' //Genero array con los nombres.
+            }
 
-        //TOMAR Y AGREGAR NOMBRES DE EL IMPUT
+            //Mandar arrayNombres a "textArea".
+            const elemento = document.getElementById('ordenados');
+            elemento.value = arrayNombres;
+        }
+
+        //TOMAR Y ORDENAR NOMBRES DE EL IMPUT
         let agregar = function() {
             const nombre = document.querySelector(".putName").value;
             nombres.push(nombre);
             const nombresOrganizados = nombres.sort();
 
-            //MANDAR DATOS A CAJA
-            const enviarr = document.getElementById('ordenados');
-
-            enviarr.value = nombresOrganizados.join('\n');
-
-
+            //LLAMAR A FUNCION DE IMPRIMIR DATOS EN HTML
+            imprimirDatos(nombresOrganizados);
         }
 
+        let limpiarTablero = function() {
+            nombres.length = 0;
+            imprimirDatos(nombres);
+        }
 
     </script>
 
