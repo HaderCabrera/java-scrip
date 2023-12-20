@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizar Nombres</title>
+    <style>
+        *{
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="agregar">
+        <label for="putName">Nombre: </label>
+        <input type="text" id="putName" class="putName">
+        <button id="botonAdd" onclick="agregar()">Agregar y ordenar nombre</button>
+    </div>
+    <h1>Nombres ordenados</h1>
+    <hr>
+    <input type="text" id="" style="font-size: 200; width: 500px; height: 500px;">
+    <textarea name="" id="ordenados" cols="30" rows="10"></textarea>
+    <script>
+        const nombres = new Array();
+
+
+        //TOMAR Y AGREGAR NOMBRES DE EL IMPUT
+        let agregar = function() {
+            const nombre = document.querySelector(".putName").value;
+            nombres.push(nombre);
+            const nombresOrganizados = nombres.sort();
+
+            //MANDAR DATOS A CAJA
+            const enviarr = document.getElementById('ordenados');
+
+            enviarr.value = nombresOrganizados.join('\n');
+
+
+        }
+
+
+    </script>
+
+</body>
+</html>

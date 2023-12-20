@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nodeName</title>
+</head>
+<body>
+    <div class="container">
+        <div class="parent">
+            <p>Hola a todos.</p>
+            <p class="message">Hola, soy todo un camper</p>
+        </div>
+    </div>
+    <input type="text" id="new-message">
+
+
+    <button onclick="obtenerDiv()">Obtener nombre de elemento DIV</button>
+
+    <script>
+        //obtener nombre de la etiqueta/nodo que contiene una clase
+        function obtenerDiv() {
+            const element = document.querySelector(".message");
+            alert(element.nodeName)
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.outerHTML con su padre</title>
+</head>
+<body>
+    <div class="container">
+        <div class="parent">
+            <p>Hola a todos.</p>
+            <p class="message">Hola, soy todo un camper</p>
+        </div>
+    </div>
+    <input type="text" id="new-message">
+
+
+    <button onclick="outterDiv()">Obtener nombre de elemento DIV</button>
+
+    <script>
+        //Obtener contenido de un elemento seleccionado junto con su padre con .outerHTML
+        function outterDiv() {
+            const element = document.querySelector(".parent");
+            alert(element.outerHTML);
+        }
+    </script>
+
+</body>
+</html>
