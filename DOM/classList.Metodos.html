@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>elemento.classList</title>
 </head>
 <body>
+    <!--classList ->> manipulacion de clases en un elemento
+        -.classList.length: Indica cuantas clase tiene el elemnt.
+        -.classList.add: Agregar una clase al final.
+        -.classList.item(#): retorna la clase en esa posicion. (retorna null si no exite la posicion)
+        -.classList.contains('clase'): Retorna true or false si exite o no la clase en el elemtn.
+        -.classList.remove('clase1','clase2',... ) : Elimina clases, no retorna nada.
+        -.classList.toggle('clase', b(opc) ): Agregar o eliminar clase de un elemento. Retorna si 		finalmente existe o no el atributo.
+                -Si en el parametro 'b' , no pongo nada si exite la 'clase' la 						 elimina y si no existe la agrega.
+                - 'b' es True intentara agregar la clase.
+                - 'b' es False intentara eliminar la clase.
+        -.classList.replace('newClass','oldClass'): Reemplaza clase, si no exite la clase retorna false	y 	si exitse la reemplaza y retorna true.-->
+
     <div id="miElemento" class="clase1 clase2">Contenido del elemento</div>
     <button onclick="agregarCLase()">Agregar clase</button>
     <button onclick="contarClases()">Cantidad de clases</button>
@@ -15,19 +27,20 @@
     <button onclick="alternarClase()">Alternar </button>
     <button onclick="reemplazarClase()">Reemplazar CLASE </button>
     <script>
+
         //AGREGAR CLASE A UNA EQTIQUETA EN DE HTML
         const agregarCLase = () => {
             const elemento = document.getElementById('miElemento');
             elemento.classList.add('nuevaClase')
         }
 
+        //RETORNA CUANTAS CLASES HAY EN UN ELEMENTO
         const contarClases = function() {
             const elemento = document.getElementById('miElemento');
-
             const cant = elemento.classList.length;
             alert("Cantidad de clases: " + cant.toString())
         }
-
+        //RETORNA EL NOMOBRE DE LA CLASE EN LA POSICION INDICADA
         const classNPos = function() {
             const elemento = document.getElementById('miElemento');
             const claseEnPosicion1 = elemento.classList.item(1);
@@ -39,19 +52,19 @@
             const existeClase = elemento.classList.contains('nuevaClase');
             alert("Existe la clase: " + existeClase)
         }
-        //REMOVER CLASES, NO RETORNA NADA (UNDEFIND)
+        //REMOVER CLASES
         const removerClase = function() {
             const elemento = document.getElementById('miElemento');
             const rta = elemento.classList.remove('clase2','nuevaClase');
             alert("Respuesta a eliminar: " + rta)
         }
-
+        //ELIMINAR AGREGAR CLASE
         const alternarClase = function() {
             const elemento = document.getElementById('miElemento');
             const rta = elemento.classList.toggle('nuevaClase');
             alert("Respuesta a alternar: " + rta)
         }
-        //REEMPLAZAR CLASE()
+        //REEMPLAZAR CLASE
         const reemplazarClase = function() {
             const elemento = document.getElementById('miElemento');
             const rta = elemento.classList.replace('nuevaClase', 'claseReemplazo');

@@ -12,8 +12,13 @@
     </style>
 </head>
 <body>
+    <!--Como utilizar querySelector con CLASE o  ID y formar de modificar cintenido de un elemento-->
+
     <p id="parrafo1" class="resultado">Este es el parrafo 1</p>
-    <p id="parrafo2">Este es el parrafo 2</p>
+    <p id="parrafo2">Este es el parrafo 2
+        <a href="#">Enlace de prueba</a>
+        <span>Carretoero experto</span>
+    </p>
     <script>
         //Me devuelve el primer elemento de esa clase
         //Utilizando querySelector para seleccionar el primer parrafo con la clase "resiltado"
@@ -26,7 +31,11 @@
         //Tambien podemos seleccionar por ID
         const segundoParrafo = document.querySelector('#parrafo2');
 
-        segundoParrafo.innerHTML = 'Texto modificado para el segundo parrafo';
+        //MODIFICAR CONTENIDO DE NODO
+            //.textContent: unicamente envia texto a todo el contenido del elemento 
+            //.innerHTML: lo que se envia es estructura de html, no solo texto
+        //segundoParrafo.textContent = '<a>Texto modificado para el segundo parrafos</a>';
+        segundoParrafo.innerHTML = '<a href="#">Texto modificado para el segundo parrafos</a>';
 
     </script>
 </body>
