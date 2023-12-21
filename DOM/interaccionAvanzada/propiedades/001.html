@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertar elementos antes,despues,fuera dentro.</title>
+<style>
+    .container{
+        border: 2px solid black;
+        width: 50vh;
+    }
+    body {
+        width: 50vh;
+    }
+    div {
+        margin: 10px;
+    }
+</style>
+</head>
+<body>
+    <div class="container" style=" border: 2px solid green;">
+        <div class="parent" style=" border: 2px solid red;">
+            <p>Hola a atodos.</p>
+            <p class="message">Hola, soy todo un camper</p>
+        </div>
+    </div>
+    <button onclick="nav_children()">div.childNodes.</button>
+
+    <script>
+    // USAR PROPIEDADES
+
+
+    //AGREGAR PARRAFO the same THAT 
+    function nav_children() {
+        const div = document.querySelector(".parent");
+        const p = document.createElement("p");
+
+        //Cantidad de hijos
+        console.log(div.childNodes.length)
+
+        //nodos
+        console.log(div.childNodes);
+
+        //node padre
+        console.log("nodos padre:");
+        console.log(div.parentNode)
+        //beforebegin, afterbegin, beforeend, afterend
+
+    }
+
+    </script>
+</body>
+</html>

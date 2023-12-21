@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertar elementos antes,despues,fuera dentro.</title>
+<style>
+    .container{
+        border: 2px solid black;
+        width: 50vh;
+    }
+    body {
+        width: 50vh;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="parent">
+            <p>Hola a atodos.</p>
+            <p class="message">Hola, soy todo un camper</p>
+        </div>
+    </div>
+    <button onclick="insertAdjacentElem()">insertAdjacentElement</button>
+    <button onclick="insertAdjHTML()">insertAdjacentHTML</button>
+    <button onclick="insertAdjText()">insertAdjText</button>
+    
+    
+    <script>
+    // USAR APIS DEL NAVEGADOR
+
+
+    //AGREGAR PARRAFO the same THAT 
+    function insertAdjacentElem() {
+        const div = document.querySelector("div");
+        const p = document.createElement("p");
+        p.innerHTML = "<span style= 'color:red;'>Este es el contenido insertado </span>"
+        //beforebegin, afterbegin, beforeend, afterend
+        div.insertAdjacentElement("afterend", p);
+    }
+
+    //AGREGAR STRING EN HTML the same THAT (HTML COMPLICADO)
+    function insertAdjHTML() {
+        const div = document.querySelector("div");
+        const str = "<span style= 'color:red;'>Este es el contenido insertado </span>"
+        div.insertAdjacentHTML("afterend", str);
+    }
+
+    //INSERTAR TEXTO UNICAMENTE
+    function insertAdjText() {
+        const div = document.querySelector("div");
+        const str = "<span style= 'color:red;'>Este es el contenido insertado </span>"
+        div.insertAdjacentText("afterbegin", str);
+    }
+
+    </script>
+</body>
+</html>
