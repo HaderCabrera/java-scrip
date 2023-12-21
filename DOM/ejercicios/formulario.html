@@ -4,37 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
-    <form>
+    <form >
         <fieldset>
             <label for="name">Nombre del cliente: </label><br>
-            <input type="text" id="name"> <br><br>
+            <input type="text" id="name" name="name"> <br><br>
 
-            <label for="materiales">Material de la caja: </label>
-            <select id="materiales">
-                <option value="Chrome">Plastico</option>
-                <option value="Edge">Carton</option>
-                <option value="Opera">PVC</option>
-                <option value="Firefox">PAPEL</option>
+            Material de la caja: 
+            <select name="material" id="material">
+                <option value="plastico">Plastico</option>
+                <option value="carton" selected>Carton</option>
+                <option value="pvc">PVC</option>
+                <option value="papel">PAPEL</option>
             </select>
 
             <br><br>
             Seleccione unas dimensiones para la caja:
             <br>
-            <input type="radio" name="lengprog" id="diminuta" value="diminuta">
+            <input type="radio" name="size" id="diminuta" value="diminuta">
             <label for="lengprog">Diminutas</label><br>
-            <input type="radio" name="lengprog" id="mediana" value="mediana" checked>
+            <input type="radio" name="size" id="mediana" value="mediana" checked>
             <label for="lengprog">Mediana</label><br>
-            <input type="radio" name="lengprog" id="grande" value="grande">
-            <label for="lengprog">Grandes</label><br>
-
-
+            <input type="radio" name="size" id="grande" value="grande">
+            <label for="lengprog">Grandes</label><br><br>
+            Comentarios: <br>
+            <textarea name="comentarios" id="comentarios" cols="30" rows="10"></textarea>
+            <br><br>
+            <input type="text" style="width: 100%;" id="resultado">
         </fieldset>
-
     </form>
+    <button onclick="capturarForm()">ENVIAR</button>
 
     <script>
+        //CALCULAR VALOR DE RAIOS
+        const calculate = () => {
+            const value = document.querySelector('[name=size]:checked').value;
+            console.log(value)
+        }
+
+        function capturarForm() {
+
+            const form = document.querySelector("form")//tomar datos de un formulario por etiqueta
+            const formData = new FormData(form)
+            console.log(formData)
+
+            //hay que recorrer formData para poder tomar valores
+            let arrayValores = new Array();
+            for (const elemento of formData) {
+                arrayValores.push(elemento[1])
+            }
+            //crear mensaje a enviar
+            document.getElementById("resultado").value = `${arrayValores[0]} ha pedido una caja de ${arrayValores[1]} con una dimension ${arrayValores[2]}. ${arrayValores[3]}`;
+        }
 
     </script>
 </body>

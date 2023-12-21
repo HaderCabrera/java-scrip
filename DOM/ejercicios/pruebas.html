@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <select name="ss" id="nombres">
+            <option value="hader">estudiante1</option>
+            <option value="carlos" selected>estudiante2</option>
+            <option value="hasdder">estudiante3</option>
+        </select>
+    </form>
+
+    <script>
+        const form = document.querySelector('form');
+        const formData = new FormData(form);
+
+        for(elemento of formData) {
+            console.log(elemento)
+        }
+    </script>
+</body>
+</html>
