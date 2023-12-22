@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto auto;
+            width: 70vw;
+            margin: 0 auto;
+            border: 2px solid black;
+        }
+        .uno {
+            grid-column: 1 / 3;
+            grid-row: 1 / 2;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto;
+            align-items: center;
+            text-align: center;
+        }
+        #botonAdd{
+            grid-column: 9 / 10;
+        }
+        #botonDelete{
+            grid-column: 10 / 11;
+        }
+        #aa{
+            grid-column: 1 / 2;
+        }
+
+        #formulario {
+            grid-column: 1 / 3;
+            grid-row: 2 / 3;
+            align-items: center;
+            text-align: center;
+            width: 30vw;
+            margin: 0 auto;
+            margin-bottom: 15px;
+            border: 1px solid black;
+        }
+        #tarjetas {
+            grid-column: 1 / 3;
+            grid-row: 3 / 4;
+            display: flex;
+            grid-template-columns: auto auto;
+            flex-wrap: wrap;
+        }
+        #tarjetas > div {
+            width: 40%;
+            border: 2px solid #ccc;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .card {
+            display: flex;
+            flex-direction: column;
+            padding: 15px 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <!--HTML--CSS-->
+    <div class="container">
+        <div class="uno">
+            <div id="aa"><h2>Gestión de tarjetas</h2></div>
+            <div id="botonAdd"><button onclick="llamadoAgregar()">AGREGAR</button></div>
+            <div id="botonDelete"><button onclick="llamadoEliminar()">ELIMINAR</button></div>
+        </div>
+        <div id="formulario">
+            <template id="templateFormulario">
+                <div class="card">
+                    <h2>Crear Flashcard</h2>
+                    <label for="pregunta">Pregunta</label>
+                    <input type="text" id="pregunta" name="pregunta"><br>
+                    <label for="respuesta"></label>Respuesta
+                    <input type="text" id="respuesta" name="respuesta"> <br>
+                    <div>
+                        <button onclick="llamadoAgregarTarjeta()">Guardar</button>
+                        <button onclick="llamadoCerrarFormulario()">Cerrar</button>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <div id="tarjetas">
+            <template id="tarjeta">
+                <div class="card2">
+                    <div> <button onclick="llamadoEliminarTarjeta()" style="background-color: red;">X</button></div>
+                    <hr width="100%">
+                    <h2 id="preguntaCard"></h2>
+                    <div id="respuestaCard">CONTENIDO</div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <script>
+        //LLAMADO DEL BOTON AGREGAR
+        function llamadoAgregar() {
+            //desabilitar boto
+            const templateFormulario = document.getElementById("templateFormulario");
+            const clonTemplateFormulario = templateFormulario.content.cloneNode(true);
+            //agregar formulario
+            const contenedorFormulario = document.querySelector('#formulario');
+            contenedorFormulario.insertBefore(clonTemplateFormulario, contenedorFormulario.firstChild);
+
+        }
+        //LLAMADO A AGREGAR TARJETA CON DATOS
+        function llamadoAgregarTarjeta() {
+
+            //HACER APARECER TARJETA
+                const templateTarjeta = document.getElementById("tarjeta");
+                const clonTemplateTarjeta = templateTarjeta.content.cloneNode(true);
+                //agregar tarjeta
+                const contenedorTarjeta = document.querySelector('#tarjetas');
+                contenedorTarjeta.insertBefore(clonTemplateTarjeta, contenedorTarjeta.firstChild);
+
+            //AGREGAR CONTENIDO A LA TARJETA
+                //titulo
+                const preguntaTarjeta = document.querySelector("#preguntaCard")
+                const newMessage = document.getElementById("pregunta").value;
+                preguntaTarjeta.textContent = newMessage;
+                //respuesta
+                const respuestaTarjeta = document.querySelector("#respuestaCard")
+                const newMessagee = document.getElementById("respuesta").value;
+                respuestaTarjeta.textContent = newMessagee;
+        }
+        //ELIMINAR FORMUALRIO
+            function llamadoCerrarFormulario() {
+                const element = document.querySelector("#formulario");
+                const csarta = document.querySelector(".card");
+                element.removeChild(csarta);
+            }
+
+        //ELIMINAR TODAS LAS TARJETAS
+            function llamadoEliminar() {
+                let elementos = [];
+                do {
+                        const element = document.querySelector("#tarjetas");
+                        const csarta = document.querySelector(".card2");
+                        element.removeChild(csarta);
+                        elementos = document.getElementsByClassName('card2');
+                        console.log(elementos)
+                } while(elementos.length >0) 
+    
+            }
+
+        //ELIMINAR LAS TARJETAS
+        function llamadoEliminarTarjeta() {
+            const element = document.querySelector("#tarjetas");
+            const csarta = document.querySelector(".card2");
+            element.removeChild(csarta);
+        }
+
+    </script>
+
+</body>
+</html>
