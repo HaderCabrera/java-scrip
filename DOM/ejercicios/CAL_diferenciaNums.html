@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parejas que cumplen diferencia</title>
+</head>
+<body>
+    <script>
+        array = [1, 5, 3, 4, 2];
+        const TARGET = 2;
+        const projectCost = function(array,diferencia) {
+            let respuesta = 0;
+            for(a of array) {
+                for(i = 0; i < array.length; i++) {
+                    console.log(array[i],a)
+                    if(a != array[i]) {
+                        if(Math.abs(array[i] - a) == diferencia ) {
+                            respuesta++;
+                        } 
+                    }
+                }
+            }
+            return respuesta;
+        }
+        let solucion = projectCost(array,TARGET);
+        console.log(solucion)
+    </script>
+</body>
+</html>

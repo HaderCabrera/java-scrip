@@ -6,3 +6,4 @@ const mapaa = function(prueba) {
 
 mapaa()
 console.log(prueba)
+
