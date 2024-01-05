@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doble click</title>
+</head>
+<body>
+    <input type="text" id="miInput" value="Texto aqui">
+    <script>
+
+        let miIMput = document.getElementById("miInput");
+        miIMput.setAttribute("ondblclick","alert('Doble click')")
+        miIMput.setAttribute("onkeypress","changeBackgroundColor()")
+    </script>
+</body>
+</html>
