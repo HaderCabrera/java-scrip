@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidades de temperatura</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 30vw;
+            margin: 0 auto;
+            padding: 10% 0;
+            gap: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="centigradosContent">
+            <label for="centigrados">Grados centigrados[°C] </label>
+            <input type="number" name="centigrado" id="centigrado">
+        </div>
+        <div id="farenheitContent">
+            <label for="farenheit">Grados farenheit[°F] </label>
+            <input type="number" name="farenheit" id="farenheit">
+        </div>
+        <button id="callToChange">CONVERTIR</button>
+    </div>
+    <script>
+
+        const toFarenheit = () => {
+            let textContentCenlius = document.getElementById("centigrado");
+            let textContentFarenheit = document.getElementById("farenheit");
+            //to change colors
+            let containerCelcius = document.getElementById("centigradosContent");
+            let containerFarenheit = document.getElementById("farenheitContent");  
+            containerCelcius.style.backgroundColor = "#feff64";
+            containerFarenheit.style.backgroundColor = "#9dd2fd";           
+            let result = (textContentCenlius.value * 9 / 5 + 32) ;
+            textContentFarenheit.value = result;            
+        }
+        const toCelcius = () => {
+            let textContentCenlius = document.getElementById("centigrado");
+            let textContentFarenheit = document.getElementById("farenheit");
+            //to change colors
+            let containerCelcius = document.getElementById("centigradosContent");
+            let containerFarenheit = document.getElementById("farenheitContent");  
+            containerCelcius.style.backgroundColor = "#9dd2fd";
+            containerFarenheit.style.backgroundColor = "#feff64" ; 
+            let result = ((textContentFarenheit.value - 32) * 5 / 9);
+            textContentCenlius.value = result;            
+        }
+
+        //selecciono nodos
+        let textContentCenlius = document.getElementById("centigrado");
+        let textContentFarenheit = document.getElementById("farenheit");
+        //onkey events
+        textContentCenlius.setAttribute("onkeyup","toFarenheit()");
+        textContentFarenheit.setAttribute("onkeyup","toCelcius()");
+
+    </script>
+</body>
+</html>

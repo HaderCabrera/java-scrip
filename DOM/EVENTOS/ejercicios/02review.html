@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keypress</title>
+    <style>
+        .oculto {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="oculto" id="ficha1">Hola, soy el bloque 1</div>
+    <div class="oculto" id="ficha2">Hola, soy el bloque 2</div>
+    <div class="oculto" id="ficha3">Hola, soy el bloque 3</div>
+
+    <script>
+        const showMe = function(dato) {
+            if (dato === 1) {
+                uno.classList.add('visible');
+                dos.classList.remove('visible');
+                tres.classList.remove('visible');
+            } else if (dato === 2) {
+                dos.classList.add('visible');
+                uno.classList.remove('visible');
+                tres.classList.remove('visible');
+            } else if (dato === 3) {
+                tres.classList.add('visible');
+                dos.classList.remove('visible');
+                uno.classList.remove('visible');
+            }
+        }
+
+        let uno = document.getElementById("ficha1");
+        let dos = document.getElementById("ficha2");
+        let tres = document.getElementById("ficha3");
+
+        window.addEventListener("keydown", function(event) {
+            if(event.key !== undefined || event.wich !== undefined) {
+                if (event.key === "1") {
+                    showMe(1);
+                } else if (event.key === "2") {
+                    showMe(2);
+                    console.log("entre al 2")
+                } else if (event.key === "3") {
+                    showMe(3);
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
