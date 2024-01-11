@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        //import {suma, PI} from '/java-scrip/MODULOS/01-modulos01.js'
+        import * as mod1 from '/java-scrip/MODULOS/01-modulos01.js';//alias
+
+        //console.log(suma(2,5));
+        //console.log("PI: " + PI);
+
+        console.log("Raoz de 2:" + mod1.r2)//alias
+
+        //EVITAR CONFLICTOS ENTRE MODULOS
+        import {PI as PII} from '/java-scrip/MODULOS/01-modulos03.js'
+        console.log("PI con mas digitos (mod3):" + PII)
+
+        //import default "puedo cambiar nombre ṕrque exporta siempre la defaul"
+        import mensaje from '/java-scrip/MODULOS/01-modulos04.js'
+        console.log(mensaje())
+    </script>
+</body>
+</html>
