@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+<title>Rick y Morty</title>
+    <style>
+        .estilar {
+            display: grid;
+            grid-template-columns: repeat(3,auto);
+            gap: 15px;
+            width: 80vw;
+            margin: 0 auto;
+        }
+        .estilar img {
+            width: 100%;
+        }
+        article {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Personajes</h1>
+<main>
+</main>
+
+    <script>
+        //Generar datos para luego llamar a imprimir
+        const generarDatos = function(toPrint) {
+            let deposito = document.querySelector('main');
+            deposito.classList.add('estilar');
+            toPrint.forEach(element => {
+                let article = document.createElement("article");
+                article.innerHTML = `<img src="${element[2]}" alt=""><h2>${element[0]}</h2><p>${element[1]}</p>`;
+                deposito.appendChild(article)
+            })
+        }
+
+        const url = `https://rickandmortyapi.com/api/character`;
+        //fetch es una promesa
+        fetch(url)
+            .then(respuesta => respuesta.json())
+            .then(objetos => {
+                objetos.results.forEach(element => {
+                    let personaje = new Array();
+                    personaje.push([element.name,element.status,element.image]);
+                    generarDatos(personaje)
+                });
+            })
+            .catch(err => console.log('Solicitud fallida', err));
+
+
+        async function getNombre(nomusu) {
+            const url = `https://pokeapi.co/api/v2/pokemon/${nomusu}`;
+            const respuesta = await fetch(url);
+
+        }
+
+           
+
+    </script>
+</body>
+</html>
