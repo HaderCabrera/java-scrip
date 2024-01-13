@@ -1,0 +1,28 @@
+{
+  "trainers": [
+    {
+      "id": "1",
+      "nombre": "hader",
+      "apellido": "cabrera",
+      "especialidad": "backerd_java"
+    },
+    {
+      "especialidad": "backerd_java_crsip",
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "nombres": "YUlkieth",
+      "apellidos": "sad",
+      "especialidad": "FUllstack"
+    }
+  ],
+  "campers": [
+    {
+      "id": "1",
+      "nombre": "luis",
+      "apellido": "ariza"
+    }
+  ],
+  "salones": []
+}
