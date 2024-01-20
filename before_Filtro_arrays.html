@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const persona = {
+            nombre: 'Hader',
+            edad: 26,
+            esTrabajador : false,
+            familia: ["Mamá","Papá"],
+            direccion: {
+                calle: 'Malvadisco',
+                numero: 12,
+                ciudad: 'Bucaramanga'
+            },
+            caminar: function() {
+                console.log(this.nombre + ' ' + 'Esta caminando')
+            }
+        };
+        //ACCEDER A DATOS
+        persona.caminar(); //estoy caminando
+
+        ////////////////////////PRIMER CASO////////////////////////
+        array = [
+            {"id":"1"},
+            {"id":"1"},
+            {"id":"2"},
+            {"id":"6"},
+        ];
+        fn = function (item) {
+            return item.id;
+        }
+        //RECORRER ARRAY
+        const output = new Map;
+
+        array.forEach(element => {
+            const dato = new Array();
+            if(element.id === fn(element)){
+                dato.push(element)
+            }
+            output.set(fn(element),dato)
+        });
+        console.log(output) 
+    
+        
+    </script>
+</body>
+</html>
