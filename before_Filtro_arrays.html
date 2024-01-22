@@ -7,46 +7,91 @@
 </head>
 <body>
     <script>
-        const persona = {
-            nombre: 'Hader',
-            edad: 26,
-            esTrabajador : false,
-            familia: ["Mamá","Papá"],
-            direccion: {
-                calle: 'Malvadisco',
-                numero: 12,
-                ciudad: 'Bucaramanga'
-            },
-            caminar: function() {
-                console.log(this.nombre + ' ' + 'Esta caminando')
-            }
-        };
-        //ACCEDER A DATOS
-        persona.caminar(); //estoy caminando
-
         ////////////////////////PRIMER CASO////////////////////////
-        array = [
-            {"id":"1"},
-            {"id":"1"},
-            {"id":"2"},
-            {"id":"6"},
-        ];
-        fn = function (item) {
-            return item.id;
-        }
-        //RECORRER ARRAY
-        const output = new Map;
+        // array = [
+        //     {"id":"1"},
+        //     {"id":"1"},
+        //     {"id":"2"}
+        // ];
+        // fn = function (item) {
+        //     return item.id;
+        // }
+        // const output = new Map;
+        // array.forEach(element => {
+        //     let dato;
+        //     if(output.has(fn(element))){
+        //         dato = output.get(fn(element))
+        //         dato.push(element)
+        //     } else{
+        //         dato = [element]
+        //         output.set(fn(element),dato)
+        //     }
+        //     dato = [];
+        // }); 
 
-        array.forEach(element => {
-            const dato = new Array();
-            if(element.id === fn(element)){
-                dato.push(element)
-            }
-            output.set(fn(element),dato)
-        });
-        console.log(output) 
-    
+        ////////////////////////SEGUNDO CASO////////////////////////
+        // array = [
+        //     [1, 2, 3],
+        //     [1, 3, 5],
+        //     [1, 5, 9]
+        // ]
+        // fn = function (list) {
+        //     return String(list[0]);
+        // }
+
+        // const output = new Map;
+        // array.forEach(element => {
+        //     let dato ;
+        //     if(output.has(fn(element))){
+        //         dato = output.get(fn(element));
+        //         dato.push(element)
+        //     } else{
+        //         dato = [element]
+        //         output.set(fn(element),dato)
+        //     }
+        //     dato = [];
+        // });
+
+
+        ////////////////////////TERCER CASO////////////////////////
+        // array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // fn = function (n) {
+        //     return String(n > 5);
+        // }
+        // const output = new Map;
+        // array.forEach(element => {
+        //     let dato ;
+        //     if(output.has(fn(element))){
+        //         dato = output.get(fn(element));
+        //         dato.push(element)
+        //     } else{
+        //         dato = [element]
+        //         output.set(fn(element),dato)
+        //     }
+        //     dato = [];
+        // });
         
+        //FUNCION GENERAL PARA TODOS LOS CASOS
+        function groupBy(fn) {
+            const output = new Map;
+            array.forEach(element => {
+                let dato ;
+                if(output.has(fn(element))){
+                    dato = output.get(fn(element));
+                    dato.push(element)
+                } else{
+                    dato = [element]
+                    output.set(fn(element),dato)
+                }
+                dato = [];
+            });
+            return output;
+        }
+
+        array.nuevoMetodo = groupBy;
+        //array.nuevoMetodo(fn)
+
+
     </script>
 </body>
 </html>
